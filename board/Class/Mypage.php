@@ -98,7 +98,7 @@ class Mypage
 								$this->intro_list = $result_search->introCardSearch($this->mem_id);
 				}
 				public function renderfunc(){
-
+                
 								echo '<div id="accordion">';
 								echo '<h3>紹介書</h3>';
 								echo '<div>';

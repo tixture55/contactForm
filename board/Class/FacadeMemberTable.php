@@ -60,15 +60,17 @@ class FacadeMemberTable extends ModelBase{
 				}
 				public function getMemList($id){
 								try{
-								var_dump($id);
 //sql書き直し。この段階でCustomerテーブルはいらない。都道府県と趣味、年齢を記載したテーブルを追加する
-$sql = $this->db->prepare("SELECT * FROM Cust_status left join Customer on Cust_status.MemId = Customer.SID left join introduce_card on introduce_card.mem_id = 65");
+
+
+$sql = $this->db->prepare("SELECT * FROM introduce_card left join Customer on Customer.SID = introduce_card.frm_mem_id where introduce_card.post_id = :sid");
 
 								}catch(Exception $e){
 												die($e->getMessage());
 								}
-								//$sql->bindParam(':sid',$id);
-								$sql->execute();
+								$sql->bindParam(':sid',$id);
+								$tt = $sql->execute();
+								//var_dump($tt);
 								$row_count_data =$sql->rowCount();
 								$flg = 0;
 								while($row = $sql->fetch()) {
@@ -78,12 +80,13 @@ $sql = $this->db->prepare("SELECT * FROM Cust_status left join Customer on Cust_
 												$hobby = $row['hobby'];
 												$o_board_num = $row['area'];
 												$comment_from_id = $row['Job'];
+												$time = $row['last_updated'];
 								}
-												$list[] = array('ID'=>$id, 'AGE'=>$age, 'HOBBY'=>$hobby,'AREA'=>$o_board_num, 'JOB'=>$comment_from_id); 
+												$list[] = array('ID'=>$id, 'AGE'=>$age, 'HOBBY'=>$hobby,'AREA'=>$o_board_num, 'JOB'=>$comment_from_id, 'TIME'=>$time); 
 								$this->intro_detail = $list;
-								var_dump($this->intro_detail);
+								var_dump($list);
 								unset($list);
-								return $this->list;
+								return $this->intro_detail;
 				}
 
 

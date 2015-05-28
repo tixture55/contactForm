@@ -7,6 +7,7 @@ class FacadeMemberLogic{
 				protected $post_id;
 				protected $board_status;
 				protected $intro_status;
+				protected $intro_mem_status;
 
 
 				private static $instance = null;
@@ -39,8 +40,10 @@ class FacadeMemberLogic{
 				public function postSearch($post_id){
 
 								$this->post_id = $post_id;
+								echo $this->post_id;
 								$facade_customer_info = new FacadeMemberTable();
-								$this->intro_mem_status = $facade_customer_info->getMemList($this->mem_id);
+
+$this->intro_mem_status = $facade_customer_info->getMemList($this->post_id);
 //var_dump($this->intro_mem_status);
 return $this->intro_mem_status;
 				}
