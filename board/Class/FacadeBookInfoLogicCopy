@@ -1,0 +1,41 @@
+<?php
+
+require_once('FacadeBookTable.php');
+
+class FacadeBookInfoLogic{
+
+				protected $name;
+				protected $table_dto;
+				protected $bookinfo;
+				protected $list;
+
+				public function tableSearch($name){
+								$this->name = $name;
+								//$facade_book_table = new FacadeBookTable();
+								//$table_dto = $facade_book_table->getList($this->name);
+								//$this->table_dto = $table_dto;
+								$list = array(
+																'山田' => array(
+																				'ID' => '001', 
+																				'出身' => '函館', 
+																				'メールアドレス' => 'yamada@example.com',
+																				'性別' => '女性'
+																				),
+																'田中' => array(
+																				'ID' => '002', 
+																				'メールアドレス' => 'tanaka@example.com',
+																				'性別'  => '男性'
+																				)
+														 );
+								$list = array_shift($list);
+								$this->list = $list;
+				}
+				public function arrayGet(){
+								return $this->bookinfo;
+				}
+
+				public function listGet(){
+								return $this->list;
+				}
+
+}
