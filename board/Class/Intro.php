@@ -17,6 +17,7 @@ body {
 <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
 <script type="text/javascript" src="./script.js"></script>
 <script type="text/javascript" src="./cross.js"></script>
+<script type="text/javascript" src="./ajax/ajax.js"></script>
 
 <script>
 $(function() {
@@ -127,7 +128,7 @@ class Intro
 								echo '</table>';
 								echo 'この人にメッセージを送る';
 echo '<div id="area">';
-echo '<form id="form" action="./ajax/test.php" method="POST">';
+echo '<form id="form" action="./ajax/AjaxIntroCard.php" method="POST">';
 echo '<textarea name="text"></textarea>';
 echo '<input type="submit" value="送信する">';
 echo '</form>';

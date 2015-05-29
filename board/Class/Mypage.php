@@ -55,7 +55,7 @@ collapsible: true
 
 <div id="area">
 <button id==".selecter">CLICK</button>
-<form id="form" action="./ajax/test.php" method="POST">
+<form id="form" action="./ajax/AjaxIntroCard.php" method="POST">
 <textarea name="text"></textarea>
 <input type="submit" value="送信する">
 </form>
@@ -98,54 +98,53 @@ class Mypage
 								$this->intro_list = $result_search->introCardSearch($this->mem_id);
 				}
 				public function renderfunc(){
-                
+
 								echo '<div id="accordion">';
 								echo '<h3>紹介書</h3>';
 								echo '<div>';
 								echo '<p>';
 								if(isset($this->intro_list)){
-								echo '<table border="1">';			
-								
-								echo '<tr>';
-								echo '<td>';
-								echo 'ご紹介番号';
-								echo '</td>';
-								echo '<td>';
-								echo 'あなたのID';
-								echo '</td>';
-								echo '<td>';
-								echo 'ご紹介させていただく方のID';
-								echo '</td>';
-								echo '<td>';
+												echo '<table border="1">';			
 
-								echo 'ご紹介日時';
-								echo '</td>';
-								echo '</tr>';
-								foreach ($this->intro_list as $this->value) { 
 												echo '<tr>';
 												echo '<td>';
-												echo '<a href=./Intro.php?no='.$this->value['ID'].'>'.$this->value['ID'].'</a>';
+												echo 'ご紹介番号';
+												echo '</td>';
+												echo '<td>';
+												echo 'あなたのID';
+												echo '</td>';
+												echo '<td>';
+												echo 'ご紹介させていただく方のID';
 												echo '</td>';
 												echo '<td>';
 
-												echo $this->value['MEM_ID']; 
-
-												echo '</td>';
-												echo '<td>';
-												echo $this->value['FRM']; 
-												echo '</td>';
-												echo '<td>';
-												echo $this->value['OCC_TIME']; 
+												echo 'ご紹介日時';
 												echo '</td>';
 												echo '</tr>';
-												
-							
-								}
-								echo '</table>';
+												foreach ($this->intro_list as $this->value) { 
+																echo '<tr>';
+																echo '<td>';
+																echo '<a href=./Intro.php?no='.$this->value['ID'].'>'.$this->value['ID'].'</a>';
+																echo '</td>';
+																echo '<td>';
+
+																echo $this->value['MEM_ID']; 
+
+																echo '</td>';
+																echo '<td>';
+																echo $this->value['FRM']; 
+																echo '</td>';
+																echo '<td>';
+																echo $this->value['OCC_TIME']; 
+																echo '</td>';
+																echo '</tr>';
+
+
+												}
+												echo '</table>';
 								}else{
-										echo '現在紹介書はありません。';
+												echo '現在紹介書はありません。';
 								}
-								//var_dump($this->intro_list);
 								if(isset($intro_status)) echo $intro_status;
 								echo '</p>';
 								echo '</div>';

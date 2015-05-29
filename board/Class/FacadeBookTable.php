@@ -32,9 +32,6 @@ $sql = $this->db->prepare("SELECT * FROM Customer left join Teletype on Customer
 								}
 						    if(isset($row['type'])){
 										$list = array('ID'=>$id, 'LASTNAME'=>$lastname, 'FNAME'=>$firstname, 'TELE'=>$tele, 'JOB'=>$job, 'TYPE'=>$type); 
-										$list[] = array_filter($list, function($var){
-										return is_int($var);
-										});
 								}else{
 										$list[] = array('ID'=>$id, 'LASTNAME'=>$lastname, 'FNAME'=>$firstname, 'TELE'=>$tele, 'JOB'=>$job, 'TYPE'=>'-'); 
 
