@@ -1,11 +1,11 @@
 
 $(function () {
-
+/*
 $('#area').
 find('.type1').css('backgroundColor', 'Yellow').end().
 find('.type2').css('backgroundColor', 'Aqua').end().
 find('.type3').css('backgroundColor', 'Lime').end();
-
+*/
 //$("li.test").prevUntil().css("background-color","#f99");
 });
 $("button").click(function(){

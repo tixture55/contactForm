@@ -44,22 +44,7 @@ collapsible: true
 </div>
 
 
-<div id="two">
-<ul id= "list__block" class="list__block">
-<li class="boo"><a href="http://www.yahoo.co.jp/">紹介書</a></li>
-<li><a href="https://www.google.co.jp">イントロG</a></li>
-<li class="test"><a href="https://www.facebook.com/">登録情報</a></li>
-<li><a href="https://twitter.com/">掲示板</a></li>
-</ul>
-</div>
 
-<div id="area">
-<button id==".selecter">CLICK</button>
-<form id="form" action="./ajax/AjaxIntroCard.php" method="POST">
-<textarea name="text"></textarea>
-<input type="submit" value="送信する">
-</form>
-</div>
 <?php
 session_start();
 

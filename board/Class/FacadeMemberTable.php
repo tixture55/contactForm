@@ -84,7 +84,7 @@ $sql = $this->db->prepare("SELECT * FROM introduce_card left join Customer on Cu
 								}
 												$list[] = array('ID'=>$id, 'AGE'=>$age, 'HOBBY'=>$hobby,'AREA'=>$o_board_num, 'JOB'=>$comment_from_id, 'TIME'=>$time); 
 								$this->intro_detail = $list;
-								var_dump($list);
+								//var_dump($list);
 								unset($list);
 								return $this->intro_detail;
 				}
