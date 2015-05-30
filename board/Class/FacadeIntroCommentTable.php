@@ -18,7 +18,7 @@ class FacadeIntroCommentTable extends ModelBase{
 								try{
 												$to = $_SESSION['AITE'];
 												$post_id = $_SESSION['no'];
-												$sql = $this->db->prepare("SELECT * FROM comment_table where rcv_mem_id=:to or pst_mem_id=:to order by post_id desc limit 5");
+												$sql = $this->db->prepare("SELECT * FROM comment_table where rcv_mem_id=:to or pst_mem_id=:to order by post_id desc limit 20");
 								}catch(Exception $e){
 												die($e->getMessage());
 								}

@@ -16,10 +16,13 @@ class RenderFunc{
 												echo $this->value['COM']; 
 												echo '</td>';
 												echo '<td>';
+												if($this->value['RCV'] == $_SESSION['AITE']){
 												echo $this->value['RCV']; 
-												echo '</td>';
-												echo '<td>';
-												echo 'さんへ送信済'; 
+																echo 'さんへ送信済'; 
+												}else{
+																echo 'あなたへの返信'; 
+
+												}
 												echo '</td>';
 												echo '<td>';
 												echo $this->value['TIME']; 
