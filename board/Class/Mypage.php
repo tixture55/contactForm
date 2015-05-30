@@ -76,6 +76,7 @@ class Mypage
 				public function facadeLogic($mem_id){
 
 								$this->mem_id = $mem_id;
+								$_SESSION['my_id'] = $this->mem_id;
 								$result_search = FacadeMemberLogic::getInstance();
 								//性別を取得する
 								$this->list = $result_search->customerSearch($this->mem_id);

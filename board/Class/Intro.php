@@ -22,7 +22,8 @@ body {
 <script>
 $(function() {
 								$( "#accordion" ).accordion({
-collapsible: true
+collapsible: true,
+autoHeight:false
 });
 								});
 </script>
@@ -62,19 +63,19 @@ class Intro
                 
 								$this->post_id = $post_id;
 								$result_search = FacadeMemberLogic::getInstance();
+								
 								//post_idから紹介者の詳細情報を取得する
 								$this->list = $result_search->postSearch($this->post_id);
 								//発行されている紹介書を取得する
 				$this->intro_list = $result_search->postSearch($_REQUEST['no']);
 				}
 				public function renderfunc(){
-
 								echo '<div id="accordion">';
 								echo '<h3>基本情報</h3>';
 								echo '<div>';
 								echo '<p>';
 								if(isset($this->intro_list)){
-								//var_dump($this->intro_list);
+								
 								echo '<table border="1">';			
 								
 								echo '<tr>';
@@ -103,6 +104,8 @@ class Intro
 								echo '</tr>';
 								foreach ($this->intro_list as $this->value) { 
 												
+								$_SESSION['no'] = $_REQUEST['no'];
+								$_SESSION['AITE'] = $this->value['ID']; 
 												echo '<tr>';
 												echo '<td>';
 												echo $_REQUEST['no'];
@@ -133,6 +136,9 @@ echo '<textarea name="text"></textarea>';
 echo '<input type="submit" value="送信する">';
 echo '</form>';
 echo '</div>';
+echo '<div id="post_com">';
+echo '</div>';
+
 								
 								}else{
 										echo '現在紹介書はありません。';

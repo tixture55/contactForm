@@ -11,8 +11,8 @@ class FacadeMemberLogic{
 
 
 				private static $instance = null;
-
-
+        private function __construct(){}
+        
 				//インスタンスを取得するメソッドを追加
 				public static function getInstance(){
 								if (is_null(self::$instance)){

@@ -1,20 +1,22 @@
 <?php
+
+require_once('FacadeIntroCommentTable.php');
 class FacadeCommentLogic{
 
-		protected comment;
+				protected $comment;
 
-		public function insertIntroComment($posted_com){
-				
-        $intro_com = new FacadeIntroCommentTable();
-				$ins_intro_com->insert($posted_com);
+				public function insertIntroComment($posted_com){
 
-		}
-		public function selectIntroComment(){
-				
-        $intro_com = new FacadeIntroCommentTable();
-				return $ins_intro_com->select();
-				
-		}
+								$intro_com = new FacadeIntroCommentTable();
+								$intro_com->insert($posted_com);
+
+				}
+				public function selectIntroComment(){
+
+								$intro_com = new FacadeIntroCommentTable();
+								return $intro_com->select();
+
+				}
 
 
 

@@ -5,90 +5,56 @@
 </head>
 
 <?php
-
+session_start();
 
 require_once('ModelBase.php');
 
-class FacadeMemberTable extends ModelBase{
+class FacadeIntroCommentTable extends ModelBase{
 
-				protected $name;
 				protected $list;
-				protected $intro_detail;
 				protected $_id;
-				
-				private static $instance = null;
-				/*
-				public function __construct() {
-				        $this->_id = md5(date('ymdhis') . mt_rand());
-								    }
-				*/
-				//インスタンスを取得するメソッドを追加
-				public static function getInstance(){
-								if (is_null(self::$instance)){
-												self::$instance = new FacadeMemberTable();
-								}
-								//インスタンスを返却する
-								return self::$instance;
 
-				}
-				public function getList($id){
+				public function select(){
 								try{
-												$sql = $this->db->prepare("SELECT * FROM Cust_status order by Cust_status.MemId");
+												$to = $_SESSION['AITE'];
+												$post_id = $_SESSION['no'];
+												$sql = $this->db->prepare("SELECT * FROM comment_table where rcv_mem_id=:to order by post_id");
 								}catch(Exception $e){
 												die($e->getMessage());
 								}
-								//$sql->bindParam(':sid',$id);
+								$sql->bindParam(':to',$to);
 								$sql->execute();
 								$row_count_data =$sql->rowCount();
 								$flg = 0;
 								while($row = $sql->fetch()) {
-												$id = $row['MemId'];
-												$id = intval($id);
-												$sex = $row['sex'];
-												$intro_num = $row['intro_num'];
-												$o_board_num = $row['open_board_num'];
-												$comment_from_id = $row['comment_from_id'];
-												$b_comment = $row['board_comment'];
-												$b_comment = mb_convert_encoding($b_comment, "utf-8");
+												$id = $row['post_id'];
+												$rcv = $row['rcv_mem_id'];
+												$pst= $row['pst_mem_id'];
+												$comment = $row['comment'];
+												$readed= $row['readed'];
+												$post_time = $row['create_date'];
+												//$b_comment = mb_convert_encoding($b_comment, "utf-8");
 
-												$list[] = array('ID'=>$id, 'SEX'=>$sex, 'INTRO_NUM'=>$intro_num, 'O_BOARD_NUM'=>$o_board_num, 'COM_FROM'=>$comment_from_id, 'B_COMMENT'=>$b_comment); 
+												$list[] = array('ID'=>$id, 'RCV'=>$rcv, 'PST'=>$pst, 'COM'=>$comment, 'READ'=>$readed, 'TIME'=>$post_time); 
 
 								}
+								//var_dump($list);
 								$this->list = $list;
 								unset($list);
 								return $this->list;
 				}
-				public function getMemList($id){
+				public function insert($post_com){
 								try{
-//sql書き直し。この段階でCustomerテーブルはいらない。都道府県と趣味、年齢を記載したテーブルを追加する
+												$to = $_SESSION['AITE'];
+												$my = $_SESSION['my_id'];
+												//var_dump($to);
+												$sql_com_ins = $this->db->prepare("insert into comment_table values(null,".$to.",".$my.",'".$post_com."',0,now())");
 
-
-$sql = $this->db->prepare("SELECT * FROM introduce_card left join Customer on Customer.SID = introduce_card.frm_mem_id where introduce_card.post_id = :sid");
-
+												$sql_com_ins->execute();
 								}catch(Exception $e){
-												die($e->getMessage());
+												die($e->getMessage()); 
 								}
-								$sql->bindParam(':sid',$id);
-								$tt = $sql->execute();
-								//var_dump($tt);
-								$row_count_data =$sql->rowCount();
-								$flg = 0;
-								while($row = $sql->fetch()) {
-												$id = $row['SID'];
-												$id = intval($id);
-												$age = $row['age'];
-												$hobby = $row['hobby'];
-												$o_board_num = $row['area'];
-												$comment_from_id = $row['Job'];
-												$time = $row['last_updated'];
-								}
-												$list[] = array('ID'=>$id, 'AGE'=>$age, 'HOBBY'=>$hobby,'AREA'=>$o_board_num, 'JOB'=>$comment_from_id, 'TIME'=>$time); 
-								$this->intro_detail = $list;
-								var_dump($list);
-								unset($list);
-								return $this->intro_detail;
 				}
-
 
 
 
