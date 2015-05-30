@@ -8,9 +8,9 @@ class RenderFunc{
 								echo '<div>';
 								echo '<p>';
 								echo '<table>';			
-								
+
 								foreach ($list as $this->value) { 
-												
+
 												echo '<tr>';
 												echo '<td class="help">';
 												echo $this->value['COM']; 
@@ -25,8 +25,8 @@ class RenderFunc{
 												echo $this->value['TIME']; 
 												echo '</td>';
 												echo '</tr>';
-				       }
+								}
 								echo '</table>';			
 
-}
+				}
 }

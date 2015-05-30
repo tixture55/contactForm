@@ -60,7 +60,6 @@ class FacadeMemberTable extends ModelBase{
 				}
 				public function getMemList($id){
 								try{
-//sql書き直し。この段階でCustomerテーブルはいらない。都道府県と趣味、年齢を記載したテーブルを追加する
 
 
 $sql = $this->db->prepare("SELECT * FROM introduce_card left join Customer on Customer.SID = introduce_card.frm_mem_id where introduce_card.post_id = :sid");
@@ -70,7 +69,6 @@ $sql = $this->db->prepare("SELECT * FROM introduce_card left join Customer on Cu
 								}
 								$sql->bindParam(':sid',$id);
 								$tt = $sql->execute();
-								//var_dump($tt);
 								$row_count_data =$sql->rowCount();
 								$flg = 0;
 								while($row = $sql->fetch()) {
@@ -81,10 +79,38 @@ $sql = $this->db->prepare("SELECT * FROM introduce_card left join Customer on Cu
 												$o_board_num = $row['area'];
 												$comment_from_id = $row['Job'];
 												$time = $row['last_updated'];
+												$mem_id = $row['mem_id'];
+												$frm_mem_id = $row['frm_mem_id'];
 								}
 												$list[] = array('ID'=>$id, 'AGE'=>$age, 'HOBBY'=>$hobby,'AREA'=>$o_board_num, 'JOB'=>$comment_from_id, 'TIME'=>$time); 
 								$this->intro_detail = $list;
-								//var_dump($list);
+								
+								//introduce_cardテーブルの整合性を確認
+								try{
+												//echo $mem_id;
+												//echo $frm_mem_id;
+$sql = $this->db->prepare("SELECT frm_mem_id FROM introduce_card where mem_id = :sfrmmemid");
+								}catch(Exception $e){
+												die($e->getMessage());
+								}
+								$sql->bindParam(':sfrmmemid',$frm_mem_id);
+								$sql->execute();
+								$row_count_data =$sql->rowCount();
+								while($row = $sql->fetch()) {
+												$frm = $row['frm_mem_id'];
+								}
+							echo $frm;
+							//対となる紹介所レコードがない場合、追加
+							if(!$row_count_data > 0){
+										
+										$sql = $this->db->prepare("insert into introduce_card values(null,".$frm_mem_id.",".$mem_id.",now())");
+								$tt = $sql->execute();
+							  var_dump($tt);		
+								}
+
+								while($row = $sql->fetch()) {
+												//$id = $row['MemId'];
+				        }				
 								unset($list);
 								return $this->intro_detail;
 				}
