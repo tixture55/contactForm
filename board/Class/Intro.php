@@ -129,8 +129,10 @@ class Intro
 											
 								}
 								echo '</table>';
-								echo 'この人にメッセージを送る';
+								echo '<br>';
 echo '<div id="area">';
+								echo 'この人にメッセージを送る';
+
 echo '<form id="form" action="./ajax/AjaxIntroCard.php" method="POST">';
 echo '<textarea name="text"></textarea>';
 echo '<input type="submit" value="送信する">';

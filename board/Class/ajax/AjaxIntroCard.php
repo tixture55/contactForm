@@ -8,7 +8,7 @@
 								$fc = new FacadeCommentLogic();
 								$fc->insertIntroComment($a);
 								$list = $fc->selectIntroComment();
-								var_dump($list);
+								//var_dump($list);
 								$render = new RenderFunc($list);
 								$render->renderAjaxIntroCard($list);
 								exit;

@@ -12,7 +12,7 @@ class RenderFunc{
 								foreach ($list as $this->value) { 
 												
 												echo '<tr>';
-												echo '<td>';
+												echo '<td class="help">';
 												echo $this->value['COM']; 
 												echo '</td>';
 												echo '<td>';
@@ -24,7 +24,9 @@ class RenderFunc{
 												echo '<td>';
 												echo $this->value['TIME']; 
 												echo '</td>';
-												echo '<td>';
-				}
+												echo '</tr>';
+				       }
+								echo '</table>';			
+
 }
 }
