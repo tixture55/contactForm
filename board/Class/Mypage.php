@@ -31,18 +31,18 @@ collapsible: true
 
 
 
-
-
-<div id="modal">
-<h1>my page</h1>
-<ul id= "list__block" class="list__block">
-<li class="boo"><a href="http://www.yahoo.co.jp/">紹介書</a></li>
-<li><a href="https://www.google.co.jp">イントロG</a></li>
-<li class="test"><a href="https://www.facebook.com/">登録情報</a></li>
-<li><a href="https://twitter.com/">掲示板</a></li>
-</ul>
-</div>
-
+<?php
+if(isset($_SESSION['flg'])){ ?>
+				<div id="modal">
+								<h1>my page</h1>
+								<ul id= "list__block" class="list__block">
+								<li class="boo"><a href="http://www.yahoo.co.jp/">紹介書</a></li>
+								<li><a href="https://www.google.co.jp">イントロG</a></li>
+								<li class="test"><a href="https://www.facebook.com/">登録情報</a></li>
+								<li><a href="https://twitter.com/">掲示板</a></li>
+								</ul>
+								</div>
+<?php } ?>
 
 
 <?php
@@ -84,75 +84,77 @@ class Mypage
 								$this->intro_list = $result_search->introCardSearch($this->mem_id);
 				}
 				public function renderfunc(){
-
-								echo '<div id="accordion">';
-								echo '<h3>紹介書</h3>';
-								echo '<div>';
-								echo '<p>';
-								if(isset($this->intro_list)){
-												echo '<table border="1">';			
-
-												echo '<tr>';
-												echo '<td>';
-												echo 'ご紹介番号';
-												echo '</td>';
-												echo '<td>';
-												echo 'あなたのID';
-												echo '</td>';
-												echo '<td>';
-												echo 'ご紹介させていただく方のID';
-												echo '</td>';
-												echo '<td>';
-
-												echo 'ご紹介日時';
-												echo '</td>';
-												echo '</tr>';
-												foreach ($this->intro_list as $this->value) { 
+								if(isset($_SESSION['flg'])){
+												
+												$hashed = password_hash($_SESSION['no'], PASSWORD_DEFAULT, array('cost' => 10));
+												$_SESSION['flg_intro'] = $hashed;
+												echo '<div id="accordion">';
+												echo '<h3>紹介書</h3>';
+												echo '<div>';
+												echo '<p>';
+												if(isset($this->intro_list)){
+																echo '<table border="1">';			
 																echo '<tr>';
 																echo '<td>';
-																echo '<a href=./Intro.php?no='.$this->value['ID'].'>'.$this->value['ID'].'</a>';
+																echo 'ご紹介番号';
+																echo '</td>';
+																echo '<td>';
+																echo 'あなたのID';
+																echo '</td>';
+																echo '<td>';
+																echo 'ご紹介させていただく方のID';
 																echo '</td>';
 																echo '<td>';
 
-																echo $this->value['MEM_ID']; 
-
-																echo '</td>';
-																echo '<td>';
-																echo $this->value['FRM']; 
-																echo '</td>';
-																echo '<td>';
-																echo $this->value['OCC_TIME']; 
+																echo 'ご紹介日時';
 																echo '</td>';
 																echo '</tr>';
+																foreach ($this->intro_list as $this->value) { 
+																				echo '<tr>';
+																				echo '<td>';
+																				echo '<a href=./Intro.php?no='.$this->value['ID'].'>'.$this->value['ID'].'</a>';
+																				echo '</td>';
+																				echo '<td>';
+
+																				echo $this->value['MEM_ID']; 
+
+																				echo '</td>';
+																				echo '<td>';
+																				echo $this->value['FRM']; 
+																				echo '</td>';
+																				echo '<td>';
+																				echo $this->value['OCC_TIME']; 
+																				echo '</td>';
+																				echo '</tr>';
 
 
+																}
+																echo '</table>';
+												}else{
+																echo '現在紹介書はありません。';
 												}
-												echo '</table>';
-								}else{
-												echo '現在紹介書はありません。';
+												if(isset($intro_status)) echo $intro_status;
+												echo '</p>';
+												echo '</div>';
+												echo '<h3>お話掲示板</h3>';
+												echo '<div>';
+												echo '<p>';
+												echo 'セクション2のコンテンツ領域です。';
+												echo '</p>';
+												echo '</div>';
+												echo '<h3>新着メッセージ</h3>';
+												echo '<div>';
+												echo '<p>';
+												echo 'セクション3のコンテンツ領域です。';
+												echo '</p>';
+												echo '<ul>';
+												echo '<li>リスト項目1</li>';
+												echo '<li>リスト項目2</li>';
+												echo '<li>リスト項目3</li>';
+												echo '</ul>';
+												echo '</div>';
 								}
-								if(isset($intro_status)) echo $intro_status;
-								echo '</p>';
-								echo '</div>';
-								echo '<h3>お話掲示板</h3>';
-								echo '<div>';
-								echo '<p>';
-								echo 'セクション2のコンテンツ領域です。';
-								echo '</p>';
-								echo '</div>';
-								echo '<h3>新着メッセージ</h3>';
-								echo '<div>';
-								echo '<p>';
-								echo 'セクション3のコンテンツ領域です。';
-								echo '</p>';
-								echo '<ul>';
-								echo '<li>リスト項目1</li>';
-								echo '<li>リスト項目2</li>';
-								echo '<li>リスト項目3</li>';
-								echo '</ul>';
-								echo '</div>';
 				}
-
 
 }
 $member_num = htmlspecialchars($_REQUEST['no']);

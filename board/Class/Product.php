@@ -58,6 +58,7 @@ body {
 <?php
 phpinfo();
 require_once('FacadeBookResearchLogic.php');
+session_start();
 
 // クラスを定義@
 class Product
@@ -144,7 +145,7 @@ class Product
 $product= new Product();
 if(isset($_POST['book'])){
 				$book_name = $_POST['book'];
-
+        $_SESSION['flg'] ="ok";
 				// 商品名を設定
 				$product->facadeLogic($book_name);
 }else{

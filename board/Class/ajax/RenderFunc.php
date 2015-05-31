@@ -23,7 +23,7 @@ class RenderFunc{
 												echo $this->value['RCV']; 
 																echo 'さんへ送信済'; 
 												}else{
-																echo 'あなたへの返信'; 
+																echo $this->value['RCV'].'さんからの返信'; 
 
 												}
 												echo '</td>';

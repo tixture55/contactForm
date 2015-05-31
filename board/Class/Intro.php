@@ -1,9 +1,7 @@
-
+<!DOCTYPE html>
+<html lang='ja'>
 <head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-<!--
-<meta http-equiv="content-type" content="application/json; charset=UTF-8">
--->
 <style type="text/css">
 <!--
 body {
@@ -84,105 +82,106 @@ class Intro
 								$this->intro_list = $result_search->postSearch($_REQUEST['no']);
 				}
 				public function renderfunc(){
-								echo '<div id="accordion">';
-								echo '<h3>基本情報</h3>';
-								echo '<div>';
-								echo '<p>';
-								if(isset($this->intro_list)){
+								if(isset($_SESSION['flg_intro']) && password_verify($_SESSION['no'],$_SESSION['flg_intro'])){
+												echo '<div id="accordion">';
+												echo '<h3>基本情報</h3>';
+												echo '<div>';
+												echo '<p>';
+												if(isset($this->intro_list)){
 
-												echo '<table border="1">';			
+																echo '<table border="1">';			
 
-												echo '<tr>';
-												echo '<td>';
-												echo 'ご紹介番号';
-												echo '</td>';
-												echo '<td>';
-												echo 'ご紹介させていただく方のメンバーID';
-												echo '</td>';
-												echo '<td>';
-												echo '年齢';
-
-												echo '</td>';
-												echo '<td>';
-												echo '趣味';
-
-												echo '</td>';
-												echo '<td>';
-												echo '都道府県';
-
-												echo '</td>';
-												echo '<td>';
-
-												echo 'ご紹介日時';
-												echo '</td>';
-												echo '</tr>';
-												foreach ($this->intro_list as $this->value) { 
-
-																$_SESSION['no'] = $_REQUEST['no'];
-																$_SESSION['AITE'] = $this->value['ID']; 
 																echo '<tr>';
 																echo '<td>';
-																echo $_REQUEST['no'];
+																echo 'ご紹介番号';
 																echo '</td>';
 																echo '<td>';
-																echo $this->value['ID']; 
+																echo 'ご紹介させていただく方のメンバーID';
 																echo '</td>';
 																echo '<td>';
-																echo $this->value['AGE']; 
+																echo '年齢';
+
 																echo '</td>';
 																echo '<td>';
-																echo $this->value['HOBBY']; 
+																echo '趣味';
+
 																echo '</td>';
 																echo '<td>';
-																echo $this->value['AREA']; 
+																echo '都道府県';
+
 																echo '</td>';
 																echo '<td>';
-																echo $this->value['TIME']; 
+
+																echo 'ご紹介日時';
 																echo '</td>';
 																echo '</tr>';
+																foreach ($this->intro_list as $this->value) { 
 
+																				$_SESSION['no'] = $_REQUEST['no'];
+																				$_SESSION['AITE'] = $this->value['ID']; 
+																				echo '<tr>';
+																				echo '<td>';
+																				echo $_REQUEST['no'];
+																				echo '</td>';
+																				echo '<td>';
+																				echo $this->value['ID']; 
+																				echo '</td>';
+																				echo '<td>';
+																				echo $this->value['AGE']; 
+																				echo '</td>';
+																				echo '<td>';
+																				echo $this->value['HOBBY']; 
+																				echo '</td>';
+																				echo '<td>';
+																				echo $this->value['AREA']; 
+																				echo '</td>';
+																				echo '<td>';
+																				echo $this->value['TIME']; 
+																				echo '</td>';
+																				echo '</tr>';
+
+																}
+																echo '</table>';
+																echo '<br>';
+																echo '<div id="area">';
+																echo 'この人にメッセージを送る';
+
+																echo '<form id="form" action="./ajax/AjaxIntroCard.php" method="POST">';
+																echo '<textarea name="text"></textarea>';
+																echo '<input type="submit" value="送信する">';
+																echo '</form>';
+																echo '</div>';
+																echo '<div id="post_com">';
+																echo '</div>';
+
+
+												}else{
+																echo '現在紹介書はありません。';
 												}
-												echo '</table>';
-												echo '<br>';
-												echo '<div id="area">';
-												echo 'この人にメッセージを送る';
-
-												echo '<form id="form" action="./ajax/AjaxIntroCard.php" method="POST">';
-												echo '<textarea name="text"></textarea>';
-												echo '<input type="submit" value="送信する">';
-												echo '</form>';
+												//var_dump($this->intro_list);
+												if(isset($intro_status)) echo $intro_status;
+												echo '</p>';
 												echo '</div>';
-												echo '<div id="post_com">';
+												echo '<h3>詳細情報</h3>';
+												echo '<div>';
+												echo '<p>';
+												echo 'セクション2のコンテンツ領域です。';
+												echo '</p>';
 												echo '</div>';
-
-
-								}else{
-												echo '現在紹介書はありません。';
+												echo '<h3>メッセージ</h3>';
+												echo '<div>';
+												echo '<p>';
+												echo 'セクション3のコンテンツ領域です。';
+												echo '</p>';
+												echo '<ul>';
+												echo '<li>リスト項目1</li>';
+												echo '<li>リスト項目2</li>';
+												echo '<li>リスト項目3</li>';
+												echo '</ul>';
+												echo '</div>';
 								}
-								//var_dump($this->intro_list);
-								if(isset($intro_status)) echo $intro_status;
-								echo '</p>';
-								echo '</div>';
-								echo '<h3>詳細情報</h3>';
-								echo '<div>';
-								echo '<p>';
-								echo 'セクション2のコンテンツ領域です。';
-								echo '</p>';
-								echo '</div>';
-								echo '<h3>メッセージ</h3>';
-								echo '<div>';
-								echo '<p>';
-								echo 'セクション3のコンテンツ領域です。';
-								echo '</p>';
-								echo '<ul>';
-								echo '<li>リスト項目1</li>';
-								echo '<li>リスト項目2</li>';
-								echo '<li>リスト項目3</li>';
-								echo '</ul>';
-								echo '</div>';
+
 				}
-
-
 }
 $post_id= htmlspecialchars($_REQUEST['no']);
 

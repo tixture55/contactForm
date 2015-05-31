@@ -18,7 +18,7 @@ class ModelBase{
 								    $this->db = new PDO($dsn,'root', 'xg23y91a');
 										
 						
-			         	}catch(Exception $e){
+			         	}catch(PDOException $e){
 										echo $e->getMessage();
 								}
         }
