@@ -2,7 +2,8 @@
 class RenderFunc{
 				function renderAjaxIntroCard($list)
 				{
-								//$this->model->doSomething1();
+                echo '<div id="my_body">';
+                //$this->model->doSomething1();
 								echo '<div id="accordion">';
 								echo '<h3>基本情報</h3>';
 								echo '<div>';

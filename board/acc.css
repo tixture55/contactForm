@@ -1,5 +1,9 @@
+#my_body{width:80%;position:relative; margin-left:auto; margin-right:auto;}
+#my_navigation { position : absolute ; left : 0 ; top : 152px ; width : 150px ; background-color : white ; }
+#my_contents { margin-left : 150px; }
+
 div#accordion {
-	width:560px; margin:10px 20px 10px 0px;	/*幅の指定と位置調整*/
+	width:560px; margin:10px 20px 10px 100px;	/*幅の指定と位置調整*/
 		}
 table {
 　width: 160%
@@ -8,7 +12,14 @@ th {
 　background: #800000;
 　font-size: 1em
 }
-td {
-　background: #008080;
-　font-size: 10em
+tr {
+　background: #8000FF;
+　font-size: 1em
+  padding: 1em 0px;
 }
+td {
+	border-bottom: solid 1px purple;
+
+}
+td#font_small{font-size:0.5em}
+td#font_com{font-size:1.5em;font-family:fantasy}
