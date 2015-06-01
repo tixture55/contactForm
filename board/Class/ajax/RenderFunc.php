@@ -35,10 +35,6 @@ class RenderFunc{
 								echo '</table>';			
 								echo '</div>';			
 								echo '</div>';			
-								echo '<div id="my_navigation">';
-								echo 'test';			
-								echo '<br>';			
-								echo '</div>';			
 
                 
 				}

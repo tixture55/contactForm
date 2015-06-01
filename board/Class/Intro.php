@@ -82,6 +82,8 @@ class Intro
 								$this->intro_list = $result_search->postSearch($_REQUEST['no']);
 				}
 				public function renderfunc(){
+								
+								$_REQUEST['no'] = $_SESSION['no'];
 								if(isset($_SESSION['flg_intro']) && password_verify($_SESSION['no'],$_SESSION['flg_intro'])){
 												echo '<div id="accordion">';
 												echo '<h3>基本情報</h3>';
