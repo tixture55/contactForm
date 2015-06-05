@@ -83,7 +83,6 @@ class Intro
 				}
 				public function renderfunc(){
 								
-								$_REQUEST['no'] = $_SESSION['no'];
 								if(isset($_SESSION['flg_intro']) && password_verify($_SESSION['no'],$_SESSION['flg_intro'])){
 												echo '<div id="accordion">';
 												echo '<h3>基本情報</h3>';
@@ -123,7 +122,7 @@ class Intro
 																				$_SESSION['AITE'] = $this->value['ID']; 
 																				echo '<tr>';
 																				echo '<td>';
-																				echo $_REQUEST['no'];
+                                        echo $_REQUEST['no'];
 																				echo '</td>';
 																				echo '<td>';
 																				echo $this->value['ID']; 
@@ -160,7 +159,6 @@ class Intro
 												}else{
 																echo '現在紹介書はありません。';
 												}
-												//var_dump($this->intro_list);
 												if(isset($intro_status)) echo $intro_status;
 												echo '</p>';
 												echo '</div>';

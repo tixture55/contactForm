@@ -99,13 +99,11 @@ $sql = $this->db->prepare("SELECT frm_mem_id FROM introduce_card where mem_id = 
 								while($row = $sql->fetch()) {
 												$frm = $row['frm_mem_id'];
 								}
-							echo $frm;
 							//対となる紹介所レコードがない場合、追加
 							if(!$row_count_data > 0){
 										
 										$sql = $this->db->prepare("insert into introduce_card values(null,".$frm_mem_id.",".$mem_id.",now())");
 								$tt = $sql->execute();
-							  var_dump($tt);		
 								}
 
 								while($row = $sql->fetch()) {

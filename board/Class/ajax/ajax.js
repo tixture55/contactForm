@@ -11,20 +11,6 @@ data: form.serialize(), //送信するデータ。フォームから取得
 success: function(response) { //通信成功時の処理はここに書く
 document.getElementById("post_com").innerHTML = response;
 
-$(".post_com").balloon({
-tipSize: 24,
-css: {
-border: 'solid 2px #e8b700',
-padding: '15px',
-fontSize: '120%',
-fontWeight: 'normal',
-fontFamily: 'ＭＳ 明朝,serif', 
-lineHeight: '1',
-backgroundColor: '#666',
-color: '#fff'
-}
-});
-
 },
 error: function(xhr) { //通信失敗時の処理はここに書く
 							 alert(xhr.responseText);
