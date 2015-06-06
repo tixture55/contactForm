@@ -76,8 +76,10 @@ class Intro
 												echo '<div>';
 												echo '<p>';
 												if(isset($this->intro_list)){
-
-																echo '<table border="1">';			
+                                echo '<div id="propose" align="right">';
+																echo '<button id="pro">公開申請</button>';
+                                echo '</div>';
+                                echo '<table border="1">';			
 
 																echo '<tr>';
 																echo '<td>';
