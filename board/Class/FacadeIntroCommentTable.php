@@ -55,6 +55,17 @@ class FacadeIntroCommentTable extends ModelBase{
 												die($e->getMessage()); 
 								}
 				}
+				public function update_pict_proposal(){
+								try{
+												$to = $_SESSION['AITE'];
+												$my = $_SESSION['my_id'];
+												$sql_com_ins = $this->db->prepare("update proposal_status set proposal=1,modified=now() where my_id=".$my." and aite_id=".$to);
+
+												$sql_com_ins->execute();
+								}catch(Exception $e){
+												die($e->getMessage()); 
+								}
+				}
 
 
 
