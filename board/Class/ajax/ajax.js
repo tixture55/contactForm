@@ -1,6 +1,4 @@
 
-document.write("<script type=\"text/javascript\" src=\"./ajax/ballon.js\"></script>");
-
 $(function () {
 								$(function() { //#formがsubmitされた時
 																var form  = $('#form');
@@ -18,10 +16,6 @@ error: function(xhr) { //通信失敗時の処理はここに書く
 });
 return false; 
 });
-$(document).on('click', '.ui-widget-overlay', function(){
-								$(this).prev().find('.ui-dialog-content').dialog('close');
-
-								});
 $('#form').submit(function() { //#formがsubmitされた時
 								var form  = $('#form');
 								$.ajax({
