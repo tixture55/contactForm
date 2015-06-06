@@ -19,19 +19,6 @@ body {
 <script type="text/javascript" src="./ajax/ajax.js"></script>
 
 <script>
-$(document).ready(function() {
-								$('#post_com').mouseover(function(){ //idにマウスオーバーしたら
-																$(this).grumble({
-text: '表示テキスト', 
-angle: 85, //確度
-distance: 60, //距離
-showAfter: 500, //表示のタイミング
-type: 'alt-', //水色にする場合
-hasHideButton: true, //クリックで消去の場合
-hideAfter: 200 //自動で消す（なしの場合はfalse）
-});
-																});
-								});
 $(function() {
 								$( "#accordion" ).accordion({
 collapsible: true,
