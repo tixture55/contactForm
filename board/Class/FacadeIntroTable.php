@@ -25,7 +25,6 @@ class FacadeIntroTable extends ModelBase{
 								$sql->bindParam(':mem_id',$this->mem_id);
 								$sql->execute();
 								$row_count_data =$sql->rowCount();
-								$flg = 0;
 								while($row = $sql->fetch()) {
 												$id = $row['post_id'];
 												$id = intval($id);
@@ -39,7 +38,6 @@ class FacadeIntroTable extends ModelBase{
 
 
 								isset($list) ? $this->list = $list : NULL;
-								unset($list);
 								return $this->list;
 				}
 

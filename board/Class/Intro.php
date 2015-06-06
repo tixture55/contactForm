@@ -80,7 +80,6 @@ class Intro
 																echo '<button id="pro">写真公開申請</button>';
                                 echo '</div>';
                                 echo '<div id="propmes" align="right">';
-                                echo '写真公開をお相手に申請しました';
 																echo '</div>';
                                 echo '<table border="1">';			
 

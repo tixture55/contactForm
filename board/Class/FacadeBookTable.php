@@ -38,7 +38,6 @@ $sql = $this->db->prepare("SELECT * FROM Customer left join Teletype on Customer
 								}
 						}
 						$this->list = $list;
-						unset($list);
 						return $this->list;
 				}
 
