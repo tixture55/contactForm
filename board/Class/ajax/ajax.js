@@ -31,4 +31,7 @@ alert(xhr.responseText);
 });
 								return false; 
 								});
+$('#pro').click(function() { //#formがsubmitされた時
+   alert('test');
+});
 });
