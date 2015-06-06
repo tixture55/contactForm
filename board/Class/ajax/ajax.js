@@ -38,7 +38,8 @@ url : "./ajax/AjaxIntroCard.php", //送信先のURL。フォームから取得
 type: "POST", //送信メソッド。フォームから取得
 data: "0", //送信するデータ。フォームから取得
 success: function(response) { //通信成功時の処理はここに書く
-document.getElementById("propose").innerHTML = response;
+document.getElementById("propose").disabled = true;
+document.getElementById("propmes").innerHTML = response;
 },
 error: function(xhr) { //通信失敗時の処理はここに書く
 alert(xhr.responseText);
