@@ -1,4 +1,8 @@
 <?php
+define('DB_NAME', 'data1');
+define('DB_HOST', 'localhost');
+define('DB_USER', 'root');
+define('DB_PASS', 'xg23y91a');
 
 class ModelBase{
 
@@ -12,10 +16,16 @@ class ModelBase{
 				public function initDb(){
 								try{
 									$dsn = sprintf(
-									  'mysql:host=%s;dbname=%s;charset=utf8;port=3306;',
-									  'localhost',
-									  'data1');
-								    $this->db = new PDO($dsn,'root', 'xg23y91a');
+									  'mysql:host=%s;dbname=%s;charset=utf8;port=3306;charset=utf8',
+									  DB_HOST,
+									  DB_NAME);
+								    $option = array(
+												PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+												PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+												PDO::ATTR_EMULATE_PREPARES => false
+										);
+
+										$this->db = new PDO($dsn,DB_USER, DB_PASS,$option);
 										
 						
 			         	}catch(PDOException $e){
