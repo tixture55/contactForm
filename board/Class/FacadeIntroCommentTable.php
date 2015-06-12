@@ -11,13 +11,17 @@ class FacadeIntroCommentTable extends ModelBase{
 				public function select(){
 								try{
 												$to = $_SESSION['AITE'];
+												$to =(int)$to;
 												$post_id = $_SESSION['no'];
-												$sql = $this->db->prepare("SELECT * FROM comment_table where rcv_mem_id=:to or pst_mem_id=:to order by post_id desc limit 20");
+												
+												$sql = $this->db->prepare("SELECT * FROM comment_table where `rcv_mem_id` = ? or `pst_mem_id`= ? order by post_id desc limit 20");
+								
 								}catch(Exception $e){
 												die($e->getMessage());
 								}
-								$sql->bindParam(':to',$to);
-								$sql->execute();
+								$sql->bindValue(1,$to, PDO::PARAM_INT);
+								$sql->bindValue(2,$to, PDO::PARAM_INT);
+								$tt = $sql->execute();
 								$row_count_data =$sql->rowCount();
 								$flg = 0;
 								while($row = $sql->fetch()) {
@@ -27,7 +31,6 @@ class FacadeIntroCommentTable extends ModelBase{
 												$comment = $row['comment'];
 												$readed= $row['readed'];
 												$post_time = $row['create_date'];
-												//$b_comment = mb_convert_encoding($b_comment, "utf-8");
 
 												$list[] = array('ID'=>$id, 'RCV'=>$rcv, 'PST'=>$pst, 'COM'=>$comment, 'READ'=>$readed, 'TIME'=>$post_time); 
 

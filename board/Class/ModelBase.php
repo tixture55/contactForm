@@ -16,7 +16,7 @@ class ModelBase{
 				public function initDb(){
 								try{
 									$dsn = sprintf(
-									  'mysql:host=%s;dbname=%s;charset=utf8;port=3306;charset=utf8',
+									  'mysql:host=%s;dbname=%s;port=3306;charset=utf8',
 									  DB_HOST,
 									  DB_NAME);
 								    $option = array(

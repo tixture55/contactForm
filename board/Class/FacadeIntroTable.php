@@ -17,7 +17,8 @@ class FacadeIntroTable extends ModelBase{
 
 				public function getList($id){
 								try{
-											  $this->mem_id = $id;	
+											  $this->mem_id = $id;
+												$this->mem_id = (int)$this->mem_id;
 												$sql = $this->db->prepare("SELECT * FROM introduce_card where mem_id =".$this->mem_id." order by post_id limit 50");
 								}catch(Exception $e){
 												die($e->getMessage());
