@@ -2,7 +2,7 @@
 class User extends AppModel
 {
 	var $name = 'User';
-	var $hasOne = array('Profile' =>
+	var $hasMany = array('Profile' =>
 			array('className' => 'Profile',
 				'conditions' => '',
 				'order' => '',
@@ -10,6 +10,15 @@ class User extends AppModel
 				'limit' => '1',
 				'dependent' => true,
 				'foreignKey' => 'user_id'
+				),
+			'Student' =>
+			array('className' => 'Student',
+				'conditions' => '', 
+				'order' => '', 
+				'exclusive' => false,
+				'dependent' => false,
+				'foreignKey' => 'user_id'
 				)
+
 			);
 }
