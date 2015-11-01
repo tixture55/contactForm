@@ -5,7 +5,7 @@
 <style type="text/css">
 <!--
 body {
-				background-color: #CC99CC;
+	background-color: #CC99CC;
 }
 -->
 </style>
@@ -63,91 +63,35 @@ session_start();
 // クラスを定義@
 class Product
 {
-				protected $name;  // 商品名
-				protected $list;  // 本情報
-				protected $value;  // 本情報
+	protected $name;  // 商品名
+	protected $list;  // 本情報
+	protected $value;  // 本情報
 
-				
-				//インスタンスを取得するメソッドを追加
-				public static function getInstance(){
-								if (is_null(self::$instance)){
-												self::$instance = new Product();
-								}
-								//インスタンスを返却する
-								return self::$instance;
-			  }
-				public function facadeLogic($book_name){
 
-								$this->name = $book_name;
-
-								//DB検索ロジックに値を渡す
-								$result_search = FacadeBookResearchLogic::getInstance();
-								//facadeにほんの名前をセット
-								$this->list = $result_search->customerSearch($this->name);
-								echo '<table border="1">';
-								echo '<tr>';
-								echo '<td>';
-								echo 'CustomerID';
-								echo '</td>';
-								echo '<td>';
-								echo '姓';
-								echo '</td>';
-								echo '<td>';
-								echo '名';
-								echo '</td>';
-								echo '<td>';
-
-								echo '電話番号';
-								echo '</td>';
-								echo '<td>';
-								echo '職業';
-								echo '</td>';
-								echo '<td>';
-								echo '電話種別';
-								echo '</td>';
-								echo '<td>';
-								echo '掲示板開設';
-								echo '</td>';
-								echo '</tr>';
-
-								foreach ($this->list as $this->value) { 
-												echo '<tr>';
-												echo '<td>';
-												echo '<a href=./Mypage.php?no='.$this->value['ID'].'>'.$this->value['ID'].'</a>';    
-												echo '</td>';
-												echo '<td>';
-
-												echo $this->value['LASTNAME']; 
-
-												echo '</td>';
-												echo '<td>';
-												echo $this->value['FNAME']; 
-												echo '</td>';
-												echo '<td>';
-												echo $this->value['TELE']; 
-												echo '</td>';
-												echo '<td>';
-												echo $this->value['JOB']; 
-												echo '</td>';
-
-												echo '<td>';
-												echo $this->value['TYPE']; 
-												echo '</td>';
-												echo '</tr>';
-								}
-								unset($this->list);
-
-								echo '</table>';
-				}
+	//インスタンスを取得するメソッドを追加
+	public static function getInstance(){
+		if (is_null(self::$instance)){
+			self::$instance = new Product();
+		}
+		//インスタンスを返却する
+		return self::$instance;
+	}
+	public function facadeLogic($book_name){
+    $j = $book_name * 2;
+		
+		$i = 19;
+		$i = $i + $j;
+		return $i;
+	}
 
 }
 // インスタンス生成
 $product= new Product();
 if(isset($_POST['book'])){
-				$book_name = $_POST['book'];
-        $_SESSION['flg'] ="ok";
-				// 商品名を設定
-				$product->facadeLogic($book_name);
+	$book_name = $_POST['book'];
+	$_SESSION['flg'] ="ok";
+	// 商品名を設定
+	$product->facadeLogic($book_name);
 }else{
 
 }
