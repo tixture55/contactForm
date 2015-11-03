@@ -24,7 +24,7 @@ $this->render('/hello/test');
 		echo '<table border="1">';
 		echo '<tr>';
 		echo '<td>';
-		echo 'CustomerID';
+		echo 'Customer';
 		echo '</td>';
 		echo '<td>';
 		echo '姓';
