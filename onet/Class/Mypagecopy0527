@@ -1,0 +1,137 @@
+
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<!--
+<meta http-equiv="content-type" content="application/json; charset=UTF-8">
+-->
+<style type="text/css">
+<!--
+body {
+				background-color: #CC99CC;
+}
+-->
+</style>
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css" />
+<link rel="stylesheet" href="acc.css" />
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+<script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+<script type="text/javascript" src="./script.js"></script>
+
+<script>
+$(function() {
+								$( "#accordion" ).accordion({
+collapsible: true
+});
+								});
+</script>
+</head>
+
+
+
+
+
+
+<div id="modal">
+<h1>my page</h1>
+<ul id= "list__block" class="list__block">
+<li class="boo"><a href="http://www.yahoo.co.jp/">紹介書</a></li>
+<li><a href="https://www.google.co.jp">イントロG</a></li>
+<li class="test"><a href="https://www.facebook.com/">登録情報</a></li>
+<li><a href="https://twitter.com/">掲示板</a></li>
+</ul>
+</div>
+
+
+<div id="two">
+<ul id= "list__block" class="list__block">
+<li class="boo"><a href="http://www.yahoo.co.jp/">紹介書</a></li>
+<li><a href="https://www.google.co.jp">イントロG</a></li>
+<li class="test"><a href="https://www.facebook.com/">登録情報</a></li>
+<li><a href="https://twitter.com/">掲示板</a></li>
+</ul>
+</div>
+
+
+<div id="accordion">
+<h3>紹介書</h3>
+<div>
+<p>
+発行されている紹介書はありません。
+<?php
+echo $_REQUEST['no'];
+
+?>
+</p>
+</div>
+<h3>お話掲示板</h3>
+<div>
+<p>
+セクション2のコンテンツ領域です。
+<?php
+echo $_REQUEST['no'];
+?>
+</p>
+</div>
+<h3>新着メッセージ</h3>
+<div>
+<p>
+セクション3のコンテンツ領域です。
+</p>
+<ul>
+<li>リスト項目1</li>
+<li>リスト項目2</li>
+<li>リスト項目3</li>
+</ul>
+</div>
+<h3>運営からのお知らせ</h3>
+<div>
+<p>
+セクション4のコンテンツ領域です。
+</p>
+</div>
+</div>
+<button id==".selecter">CLICK</button>
+<form id="form" action="./ajax/test.php" method="POST">
+<textarea name="text"></textarea>
+<input type="submit" value="送信する">
+</form>
+
+<?php
+require_once('FacadeMemberLogic.php');
+class Mypage
+{
+				protected $intro_num;
+				protected $board_num;
+				protected $mem_id;
+				protected $list;
+
+
+				private static $instance = null;
+
+				//コンストラクタをプライベートに設定
+				//private function __construct(){}
+
+				//インスタンスを取得するメソッドを追加
+				public static function getInstance(){
+								if (is_null(self::$instance)){
+												self::$instance = new Mypage();
+								}
+								//インスタンスを返却する
+								return self::$instance;
+
+				}
+
+				public function facadeLogic($mem_id){
+
+								$this->mem_id = $mem_id;
+								$result_search = FacadeMemberLogic::getInstance();
+								//性別を取得する
+								$this->list = $result_search->customerSearch($this->mem_id);
+								var_dump($this->list);
+				}
+}
+$member_num = htmlspecialchars($_REQUEST['no']);
+
+$mypage = Mypage::getInstance();
+$mypage->facadeLogic($member_num);
+

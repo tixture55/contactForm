@@ -1,0 +1,47 @@
+<?php
+		require_once('ModelBase.php');
+		
+		class FacadeBookTable extends ModelBase{
+		
+				protected $name;
+        protected $list;
+
+				public function getList($id){
+						if(isset($id) && $id !=''){
+							$sql = $this->db->prepare("SELECT * FROM Customer left join Teletype on Customer.Telephone = Teletype.telephone WHERE SID=:sid order by Customer.SID");
+						}else{
+							$sql = $this->db->prepare("SELECT * FROM Customer");
+							
+						}
+						$sql->bindParam(':sid',$id);
+						$sql->execute();
+						$row_count_data =$sql->rowCount();
+				    while($row = $sql->fetch()) {
+							  $id = $row['SID'];
+						    $lastname = $row['Last_Name'];
+						    $firstname = $row['First_Name'];
+						    $tele = $row['Telephone'];
+						    $job = $row['Job'];
+						    if(isset($row['type'])){
+										$type = $row['type'];
+										if(is_null($type)) $type= '-';
+								}
+						    if(isset($row['type'])){
+										$list[] = array('ID'=>$id, 'LASTNAME'=>$lastname, 'FNAME'=>$firstname, 'TELE'=>$tele, 'JOB'=>$job, 'TYPE'=>$type); 
+								}else{
+										$list[] = array('ID'=>$id, 'LASTNAME'=>$lastname, 'FNAME'=>$firstname, 'TELE'=>$tele, 'JOB'=>$job, 'TYPE'=>'-'); 
+
+								}
+						}
+            $this->list = $list;
+						//var_dump($list);
+						unset($list);
+						return $this->list;
+				}
+
+
+
+
+
+
+		}
