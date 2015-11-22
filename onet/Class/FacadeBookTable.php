@@ -22,13 +22,12 @@ class FacadeBookTable extends ModelBase{
 			$stmt = $this->db->prepare($sql2);
 			//$stmt->bindParam(':sid',$id);
 			$stmt->execute();
-		  $stmt->closeCursor();
+		  //$stmt->closeCursor();
 		
-		
-		$this->db->commit();
+		//$this->db->commit();
 		}catch(PDOException $e){
 			//ロールバック
-			$this->db->rollBack();
+			//$this->db->rollBack();
 			echo "失敗しました。" . $e->getMessage();
 		}
 		$row_count_data =$sql->rowCount();
