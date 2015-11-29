@@ -16,7 +16,6 @@ class HellosController extends AppController
 public function index($id){
 //$this->render('/Hello/test');
 		$this->id = $id;
-    $this->name = $book_name;
 		//DB検索ロジックに値を渡す
 		$result_search = new FacadeBookResearchLogicController();
 		//facadeにほんの名前をセット
