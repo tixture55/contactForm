@@ -65,11 +65,17 @@ public function index($id){
 		}
 
 		echo '</table>';
+		$this->Session->write('id', $this->id);
+		$this->Session->write('list_balance', $this->list_balance);
 	}
 public function add(){
-    $this->set('plice',$this->data['hello']['plice']);
+    $this->Session->read('id');
+    $this->Session->read('list_balance');
+		$this->set('plice',$this->data['hello']['plice']);
 }
 public function output_done(){
+    $this->Session->read('id');
+    $this->Session->read('list_balance');
     $this->set('plice',$this->data['hello']['plice']);
 }
 }
