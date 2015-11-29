@@ -3,8 +3,7 @@
  * /app/Controller/HellosController.php
  */
 session_start();
-require_once('FacadeBookResearchLogicController.php');
-class HellosController extends AppController
+class outputOtherAccountController extends AppController
 {
 	/** ビュー未使用 */
 	public $autoRender = true;
@@ -23,7 +22,7 @@ $this->render('/Hello/test');
 		echo '<table border="1">';
 		echo '<tr>';
 		echo '<td>';
-		echo 'お客様ID';
+		echo 'ustomerID';
 		echo '</td>';
 		echo '<td>';
 		echo '姓';
@@ -34,15 +33,25 @@ $this->render('/Hello/test');
 		echo '<td>';
 		echo '電話番号';
 		echo '</td>';
+		echo '<td>';
+		echo '職業';
+		echo '</td>';
+		echo '<td>';
+		echo '電話種別';
+		echo '</td>';
+		echo '<td>';
+		echo '</td>';
 		echo '</tr>';
 
 		foreach ($this->list as $this->value) { 
-		echo '<tr>';
+			echo '<tr>';
 			echo '<td>';
+			//echo '<a href=./Mypage.php?no='.$this->value['ID'].'>'.$this->value['ID'].'</a>';    
 			echo '</td>';
-			
 			echo '<td>';
+
 			echo $this->value['LASTNAME']; 
+
 			echo '</td>';
 			echo '<td>';
 			echo $this->value['FNAME']; 
@@ -50,7 +59,13 @@ $this->render('/Hello/test');
 			echo '<td>';
 			echo $this->value['TELE']; 
 			echo '</td>';
+			echo '<td>';
+			echo $this->value['JOB']; 
+			echo '</td>';
 
+			echo '<td>';
+			echo $this->value['TYPE']; 
+			echo '</td>';
 			echo '</tr>';
 		}
 		unset($this->list);

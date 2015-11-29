@@ -5,7 +5,7 @@
 <style type="text/css">
 <!--
 body {
-	        background-color: #CC99CC;
+	background-color: #CC99CC;
 }
 -->
 </style>
@@ -20,11 +20,42 @@ body {
 <body>
 </p>
 <?php 
+
+echo '<table border="1">';
+echo $this->Html->tableCells(array(
+		array(
+		$this->Html->link(
+		'振込手続き',
+		array(
+			'outputOtherAccount',
+			'index'
+			)
+		),
+		$this->Html->link(
+		'残高照会',
+		array(
+			'outputOtherAccount',
+			'index'
+		
+		)),
+		$this->Html->link(
+		'出金処理',
+		array(
+			'outputOtherAccount',
+			'index'
+		
+		)),
+		
+		),
+		array())) 
+		. PHP_EOL;
+echo '</table>';
+
 echo $this->Form->create('hello', array('action' => 'add','method' => 'post'));
 echo $this->Form->input(
-    'username',
-		    array('label' => 'Username')
-				);
+		'username',
+		array('label' => 'Username')
+		);
 echo $this->Form->end('会員検索');
 
 ?>
