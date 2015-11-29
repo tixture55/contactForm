@@ -119,6 +119,26 @@ echo $this->Html->tableCells(array(
 if(isset($intro_status)) echo $intro_status;
 echo '</p>';
 echo '</div>';
+echo '<h3>出金処理</h3>';
+echo '<div>';
+echo $this->Form->create('hello', array('action' => 'add','method' => 'post'));
+echo $this->Form->input(
+		'username',
+		array('label' => '金額')
+		);
+echo $this->Form->input(
+		'username',
+		array('label' => '入金先銀行')
+		);
+echo $this->Form->input(
+		'username',
+		array('label' => '入金先口座番号')
+		);
+echo $this->Form->end('検索');
+echo '<p>';
+echo '</ul>';
+echo '</div>';
+
 echo '<h3>振込履歴</h3>';
 echo '<div>';
 echo '<p>';
@@ -133,10 +153,6 @@ echo '</div>';
 
 
 
-/*
-echo '</p>';
-echo '</div>';
-*/
 echo '<h3>新着メッセージ</h3>';
 echo '<div>';
 echo '<p>';
