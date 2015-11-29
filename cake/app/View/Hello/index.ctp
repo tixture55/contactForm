@@ -5,7 +5,7 @@
 <style type="text/css">
 <!--
 body {
-	        background-color: #CC99CC;
+	background-color: #CC99CC;
 }
 -->
 </style>
@@ -21,12 +21,52 @@ body {
 </p>
 <?php 
 
+//print_r($balance);
+$balance_money = array_pop($balance);
 
-echo $this->Form->create('hello', array('action' => 'add'));
+echo '<table border="1">';
+echo $this->Html->tableCells(array(
+'口座残高','最終入出金日'
+));
+echo $this->Html->tableCells(array(
+number_format($balance_money).'円','最終入出金日'
+));
+echo '</table>';
+echo '<table border="1">';
+echo $this->Html->tableCells(array(
+		array(
+		$this->Html->link(
+		'振込手続き',
+		array(
+			'outputOtherAccount',
+			'index'
+			)
+		),
+		$this->Html->link(
+		'残高照会',
+		array(
+			'outputOtherAccount',
+			'index'
+		
+		)),
+		$this->Html->link(
+		'出金処理',
+		array(
+			'outputOtherAccount',
+			'index'
+		
+		)),
+		
+		),
+		array())) 
+		. PHP_EOL;
+echo '</table>';
+
+echo $this->Form->create('hello', array('action' => 'add','method' => 'post'));
 echo $this->Form->input(
-    'username',
-		    array('label' => 'Username')
-				);
+		'username',
+		array('label' => 'Username')
+		);
 echo $this->Form->end('会員検索');
 
 ?>

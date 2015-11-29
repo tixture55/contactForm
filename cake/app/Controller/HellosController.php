@@ -14,7 +14,7 @@ class HellosController extends AppController
 	public $value;  // 本情報
 
 public function index($id){
-$this->render('/Hello/test');
+//$this->render('/Hello/test');
 		$this->id = $id;
     $this->name = $book_name;
 		//DB検索ロジックに値を渡す
@@ -24,9 +24,8 @@ $this->render('/Hello/test');
 		//残高を計算するためクラスのインスタンス変数を定義
 		$result_search = new FacadeBookResearchLogicController();
 		//DBで取得したいタイプの指定：(1:残高テーブルの値取得)
-		$this->list_balance = $result_search->customerSearch($this->name,1);
-		
-		
+		$this->list_balance = $result_search->customerSearch($this->id,1);
+		$this->set('balance',$this->list_balance);
 		
 		
 		

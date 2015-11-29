@@ -20,6 +20,10 @@ body {
 <body>
 </p>
 <?php 
+
+print_r($balance);
+
+
 echo '<table border="1">';
 echo $this->Html->tableCells(array(
 '口座残高','最終入出金日'
