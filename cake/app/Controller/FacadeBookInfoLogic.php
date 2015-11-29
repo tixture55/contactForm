@@ -15,7 +15,6 @@ class FacadeBookInfoLogic{
 								$this->name = $name;
 								$this->type= $type;
 				        
-								echo $this->name; 
 								//type:1は残高テーブルの参照
 								if($this->type == 1){
 									$list = new FacadeBalanceTable();

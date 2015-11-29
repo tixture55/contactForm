@@ -23,13 +23,12 @@ $this->render('/login/login');
 	}
 public function auth(){
   $this->render('/login/login');
-	if(isset($this->data['login']['username'])){
+	
+	if($this->data['login']['username'] !='' && $this->data['login']['password'] && isset($this->data['login']['username']) && isset($this->data['login']['password'])){
 		//認証テーブルにアクセス
 		$auth_search = new FacadeAuthLogicController();
-    $auth_search->authCompare($this->data['login']['username']);
+    $auth_search->authCompare($this->data['login']['username'],$this->data['login']['password']);
 			return $this->redirect(array('controller' => 'hellos','action' => 'index'));	
-		            array('controller' => 'hello', 'action' => 'index')
-								        );*/
 	}else{
 		return $this->redirect(array('controller' => 'logins','action' => 'index'));	
 
