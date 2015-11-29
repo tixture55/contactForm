@@ -1,11 +1,12 @@
 <?php
 
-require_once('FacadeBookInfoLogic.php');
+require_once('FacadeAuthCheckTable.php');
 
 Class FacadeAuthLogicController{
 	
 	    protected $name;
 	    protected $pass;
+	    protected $list;
 
 				private static $instance = null;
 
@@ -22,9 +23,8 @@ Class FacadeAuthLogicController{
 			public function authCompare($name,$pass){
 						$this->name = $name;
 						$this->pass = $pass;
-
-						$facade_customer_info = new FacadeBookInfoLogic();
-						$this->list = $facade_customer_info->tableSearch($this->name,$type);
+						$facade_auth_check = new FacadeAuthCheckTable();
+						$this->list = $facade_auth_check->getList($this->name,$this->pass);
 						return $this->list;
 			}
       
