@@ -53,7 +53,6 @@ $this->render('/Hello/test');
 
 			echo '</tr>';
 		}
-		unset($this->list);
 
 		echo '</table>';
 	}

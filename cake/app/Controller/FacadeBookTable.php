@@ -10,6 +10,7 @@
 						if(isset($id) && $id !=''){
 
 $sql = $this->db->prepare("SELECT * FROM Customer left join Teletype on Customer.Telephone = Teletype.telephone left join board_status on Customer.SID = board_status.UserID WHERE SID=:sid order by Customer.SID limit 50");
+
 						}else{
 							$sql = $this->db->prepare("SELECT * FROM Customer where Customer.SID = 10 limit 50");
 							
