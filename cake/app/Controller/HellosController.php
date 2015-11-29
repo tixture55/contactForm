@@ -20,11 +20,11 @@ $this->render('/Hello/test');
 		//DB検索ロジックに値を渡す
 		$result_search = new FacadeBookResearchLogicController();
 		//facadeにほんの名前をセット
-		$this->list = $result_search->customerSearch($this->id,1);
+		$this->list = $result_search->customerSearch($this->id,0);
 		//残高を計算するためクラスのインスタンス変数を定義
 		$result_search = new FacadeBookResearchLogicController();
 		//DBで取得したいタイプの指定：(1:残高テーブルの値取得)
-		$this->list = $result_search->customerSearch($this->name,1);
+		$this->list_balance = $result_search->customerSearch($this->name,1);
 		
 		
 		
@@ -47,10 +47,10 @@ $this->render('/Hello/test');
 		echo '</td>';
 		echo '</tr>';
     
-
 		foreach ($this->list as $this->value) { 
 		echo '<tr>';
 			echo '<td>';
+			echo $this->value['ID']; 
 			echo '</td>';
 			
 			echo '<td>';

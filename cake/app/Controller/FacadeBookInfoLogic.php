@@ -24,14 +24,8 @@ class FacadeBookInfoLogic{
 								}
 								
 								$get_list = $list->getList($this->name);
-				        return $get_list;
-				}
-				public function arrayGet(){
-								return $this->bookinfo;
+								return $get_list;
 				}
 
-				public function listGet(){
-								return $this->list;
-				}
 
 }
