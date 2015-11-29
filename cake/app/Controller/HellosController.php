@@ -9,17 +9,18 @@ class HellosController extends AppController
 	/** ビュー未使用 */
 	public $autoRender = true;
 	public $name = Hello;  // 商品名
+	public $id;  //userID 
 	public $list;  // 本情報
 	public $value;  // 本情報
 
-public function index(){
+public function index($id){
 $this->render('/Hello/test');
-		$this->name = $book_name;
-
+		$this->id = $id;
+    $this->name = $book_name;
 		//DB検索ロジックに値を渡す
 		$result_search = new FacadeBookResearchLogicController();
 		//facadeにほんの名前をセット
-		$this->list = $result_search->customerSearch($this->name,1);
+		$this->list = $result_search->customerSearch($this->id,1);
 		//残高を計算するためクラスのインスタンス変数を定義
 		$result_search = new FacadeBookResearchLogicController();
 		//DBで取得したいタイプの指定：(1:残高テーブルの値取得)

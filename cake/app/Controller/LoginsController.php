@@ -31,7 +31,8 @@ class LoginsController extends AppController
 			$auth_search = new FacadeAuthLogicController();
 			$this->auth_info = $auth_search->authCompare($this->data['login']['username'],$this->data['login']['password']);
 			if(!empty($this->auth_info)){
-				return $this->redirect(array('controller' => 'hellos','action' => 'index'));	
+				$id = array_shift($this->auth_info);
+				return $this->redirect(array('controller' => 'hellos','action' => 'index', $id));	
 			}else{
 				return $this->redirect(array('controller' => 'logins','action' => 'index'));	
 
