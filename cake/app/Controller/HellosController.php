@@ -14,6 +14,8 @@ class HellosController extends AppController
 	public $value;  // 本情報
 
 public function index($id){
+    $this->Session->read('id');
+    $this->Session->read('list_balance');
 //$this->render('/Hello/test');
 		$this->id = $id;
 		//DB検索ロジックに値を渡す

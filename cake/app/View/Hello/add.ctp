@@ -20,6 +20,7 @@ body {
 <body>
 <?php
 echo $this->Form->create('hello', array('action' => 'output_done','method' => 'post'));
+echo $this->Form->hidden('Hellos.cust_code' ,array('value' => $plice));
 echo '<table border="1">';
 echo '<tr>';
 echo '<td>';
@@ -33,7 +34,6 @@ echo '金額';
 echo '</td>';
 echo '</tr>';
 
-//foreach ($this->list as $this->value) { 
 	echo '<tr>';
 	echo '<td>';
 	echo 'エイト銀行';
@@ -47,7 +47,6 @@ echo '</tr>';
 	echo '</td>';
 
 	echo '</tr>';
-//}   
 
 echo '</table>';
 echo $this->Form->end('出金実行');
