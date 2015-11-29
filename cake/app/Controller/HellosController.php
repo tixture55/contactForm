@@ -67,7 +67,10 @@ public function index($id){
 		echo '</table>';
 	}
 public function add(){
-	echo $this->data[hello][username];
+    $this->set('plice',$this->data['hello']['plice']);
+}
+public function output_done(){
+    $this->set('plice',$this->data['hello']['plice']);
 }
 }
 // インスタンス生成

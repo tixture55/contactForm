@@ -123,7 +123,7 @@ echo '<h3>出金処理</h3>';
 echo '<div>';
 echo $this->Form->create('hello', array('action' => 'add','method' => 'post'));
 echo $this->Form->input(
-		'username',
+		'plice',
 		array('label' => '金額')
 		);
 echo $this->Form->input(
@@ -134,7 +134,7 @@ echo $this->Form->input(
 		'username',
 		array('label' => '入金先口座番号')
 		);
-echo $this->Form->end('検索');
+echo $this->Form->end('出金');
 echo '<p>';
 echo '</ul>';
 echo '</div>';
