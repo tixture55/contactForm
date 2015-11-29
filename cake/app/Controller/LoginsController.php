@@ -32,6 +32,9 @@ class LoginsController extends AppController
 			$this->auth_info = $auth_search->authCompare($this->data['login']['username'],$this->data['login']['password']);
 			if(!empty($this->auth_info)){
 				return $this->redirect(array('controller' => 'hellos','action' => 'index'));	
+			}else{
+				return $this->redirect(array('controller' => 'logins','action' => 'index'));	
+
 			}
 		}else{
 				return $this->redirect(array('controller' => 'logins','action' => 'index'));	
@@ -39,11 +42,7 @@ class LoginsController extends AppController
 			}
 	}
 }
-// インスタンス生成
-//$product= new HellosController();
 if(isset($_POST['book'])){
 	$book_name = $_POST['book'];
 	$_SESSION['flg'] ="ok";
-	// 商品名を設定
-	//$product->index($book_name);
 }
