@@ -29,16 +29,36 @@ class FacadeBalanceTable extends ModelBase{
 		return $this->list;
 	}
 	public function updateAccountMoney($id,$output){
-		
+
 		if(isset($id) && $id !=''){
-			$sql = $this->db->prepare("UPDATE AccountMoney SET account_balance = account_balance -:output WHERE SID=:sid");
 
-		}else{
+			try{  
+				$this->db->beginTransaction();
+				$sql3 = "SELECT * FROM AccountMoney WHERE SID=:sid FOR UPDATE";
+				$sql = $this->db->prepare("UPDATE AccountMoney SET account_balance = account_balance -:output WHERE SID=:sid");
+				$sql2 = "SELECT account_balance FROM AccountMoney WHERE SID=:sid";
+				$stmt2 = $this->db->prepare($sql3);
+				$stmt3 = $this->db->prepare($sql2);
+				$sql->bindParam(':sid',$id);
+				$stmt2->bindParam(':sid',$id);
+				$stmt3->bindParam(':sid',$id);
+				$sql->bindParam(':output',$output);
+				$stmt2->execute();
+				$stmt3->execute();
+				$sql->execute();
+				$stmt2->closeCursor(); 
+				$stmt3->closeCursor(); 
+				$sql->closeCursor(); 
+				$this->db->commit();
+						$result = $stmt3->fetchAll();
+						var_dump($result);
+						while($row = $stmt3->fetch()) {
+							  $balance = $row['account_balance'];
 
-		}
-		$sql->bindParam(':sid',$id);
-		$sql->bindParam(':output',$output);
-		$sql->execute();
+			      }
+			}catch(PDOException $e){
+				$this->db->rollback();
+			}
 
 	}
 
@@ -46,5 +66,5 @@ class FacadeBalanceTable extends ModelBase{
 
 
 
-
+}
 }
