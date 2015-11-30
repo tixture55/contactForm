@@ -122,6 +122,10 @@ echo '</div>';
 echo '<h3>出金処理</h3>';
 echo '<div>';
 echo $this->Form->create('hello', array('action' => 'add','method' => 'post'));
+echo $this->Form->hidden(
+'id' ,
+array('value' => $id)
+);
 echo $this->Form->input(
 		'plice',
 		array('label' => '金額')
@@ -131,7 +135,7 @@ echo $this->Form->input(
 		array('label' => '入金先銀行')
 		);
 echo $this->Form->input(
-		'username',
+		'account',
 		array('label' => '入金先口座番号')
 		);
 echo $this->Form->end('出金');

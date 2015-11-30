@@ -18,12 +18,17 @@ class FacadeBookInfoLogic{
 								//type:1は残高テーブルの参照
 								if($this->type == 1){
 									$list = new FacadeBalanceTable();
+								  $get_list = $list->getList($this->name,$this->type);
 									
-								}else{
+								}elseif($this->type == 2){
+									$list = new FacadeBalanceTable();
+								  $list->updateAccountMoney($this->name,$this->outputMoney);
+								  	
+								}else{	
 									$list = new FacadeBookTable();
+								  $get_list = $list->getList($this->name,$this->type);
 								}
 								
-								$get_list = $list->getList($this->name);
 								return $get_list;
 				}
 

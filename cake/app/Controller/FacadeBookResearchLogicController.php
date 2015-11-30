@@ -22,10 +22,20 @@ Class FacadeBookResearchLogicController{
 
 				}
 			public function customerSearch($name,$type){
-						$this->name = $name;
-						$facade_customer_info = new FacadeBookInfoLogic();
-						$this->list = $facade_customer_info->tableSearch($this->name,$type);
-						return $this->list;
+			
+			  $this->name = $name;
+				$facade_customer_info = new FacadeBookInfoLogic();
+				$this->list = $facade_customer_info->tableSearch($this->name,$type);
+				
+				return $this->list;
+			}
+			public function balanceUpdate($name,$type,$output){
+			
+			  $this->name = $name;
+				$facade_customer_info = new FacadeBalanceTable();
+				if(isset($this->name)){
+					$facade_customer_info->updateAccountMoney($this->name,$output);
+				}	
 			}
 			public function bookInfoGet(){
 						return $this->bookinfo;

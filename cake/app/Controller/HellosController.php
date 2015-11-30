@@ -13,8 +13,11 @@ class HellosController extends AppController
 	public $list;  // 本情報
 	public $value;  // 本情報
 
+
+
 public function index($id){
-    $this->Session->read('id');
+    
+		$this->Session->read('id');
     $this->Session->read('list_balance');
 //$this->render('/Hello/test');
 		$this->id = $id;
@@ -27,6 +30,7 @@ public function index($id){
 		//DBで取得したいタイプの指定：(1:残高テーブルの値取得)
 		$this->list_balance = $result_search->customerSearch($this->id,1);
 		$this->set('balance',$this->list_balance);
+		$this->set('id',$this->id);
 		
 		
 		
@@ -67,18 +71,21 @@ public function index($id){
 		}
 
 		echo '</table>';
-		$this->Session->write('id', $this->id);
-		$this->Session->write('list_balance', $this->list_balance);
 	}
 public function add(){
-    $this->Session->read('id');
-    $this->Session->read('list_balance');
 		$this->set('plice',$this->data['hello']['plice']);
+		$this->set('id',$this->data['hello']['id']);
 }
 public function output_done(){
-    $this->Session->read('id');
+		
+		$this->id = $this->data['hello']['id'];
+		//DBで取得したいタイプの指定：(1:残高テーブルの値取得 2:残高テーブルの値更新)
+		$result_search = new FacadeBookResearchLogicController();
+		$this->list_balance = $result_search->balanceUpdate($this->id,2,$this->data['hello']['plice']);
+		$this->set('plice',$this->data['hello']['plice']);
+    
+		$this->Session->read('id');
     $this->Session->read('list_balance');
-    $this->set('plice',$this->data['hello']['plice']);
 }
 }
 // インスタンス生成

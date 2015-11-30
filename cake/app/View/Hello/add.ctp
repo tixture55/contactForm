@@ -20,7 +20,19 @@ body {
 <body>
 <?php
 echo $this->Form->create('hello', array('action' => 'output_done','method' => 'post'));
-echo $this->Form->hidden('Hellos.cust_code' ,array('value' => $plice));
+echo $this->Form->input(
+		'username',
+		array('label' => '株価検索(銘柄もしくは株コードを入力)')
+		);
+
+echo $this->Form->hidden(
+'id' ,
+array('value' => $id)
+);
+echo $this->Form->hidden(
+'plice' ,
+array('value' => $plice)
+);
 echo '<table border="1">';
 echo '<tr>';
 echo '<td>';
