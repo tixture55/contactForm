@@ -23,6 +23,7 @@ Class FacadeAuthLogicController{
 			public function authCompare($name,$pass){
 						$this->name = $name;
 						$this->pass = $pass;
+						
 						$facade_auth_check = new FacadeAuthCheckTable();
 						$this->list = $facade_auth_check->getList($this->name,$this->pass);
 						return $this->list;

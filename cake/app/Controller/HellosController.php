@@ -16,7 +16,6 @@ class HellosController extends AppController
 
 
 public function index($id){
-    
 		$this->Session->read('id');
     $this->Session->read('list_balance');
 //$this->render('/Hello/test');

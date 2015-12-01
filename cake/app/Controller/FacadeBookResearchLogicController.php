@@ -22,7 +22,6 @@ Class FacadeBookResearchLogicController{
 
 				}
 			public function customerSearch($name,$type){
-			
 			  $this->name = $name;
 				$facade_customer_info = new FacadeBookInfoLogic();
 				$this->list = $facade_customer_info->tableSearch($this->name,$type);
