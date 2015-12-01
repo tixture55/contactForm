@@ -20,10 +20,6 @@ body {
 <body>
 <?php
 echo $this->Form->create('hello', array('action' => 'output_done','method' => 'post'));
-echo $this->Form->input(
-		'username',
-		array('label' => '株価検索(銘柄もしくは株コードを入力)')
-		);
 
 echo $this->Form->hidden(
 'id' ,

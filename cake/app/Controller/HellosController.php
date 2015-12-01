@@ -80,11 +80,15 @@ public function output_done(){
 		$this->id = $this->data['hello']['id'];
 		//DBで取得したいタイプの指定：(1:残高テーブルの値取得 2:残高テーブルの値更新)
 		$result_search = new FacadeBookResearchLogicController();
-		$this->list_balance = $result_search->balanceUpdate($this->id,2,$this->data['hello']['plice']);
-		$this->set('plice',$this->data['hello']['plice']);
-    
-		$this->Session->read('id');
-    $this->Session->read('list_balance');
+		$tran_flg = $result_search->balanceUpdate($this->id,2,$this->data['hello']['plice']);
+		$tran_flg = intval($tran_flg);
+		if($tran_flg == 1){
+			$this->set('flg',$tran_flg);
+		}else{
+			$this->set('plice',$this->data['hello']['plice']);
+    }
+			$this->set('id',$this->id);
+
 }
 }
 // インスタンス生成

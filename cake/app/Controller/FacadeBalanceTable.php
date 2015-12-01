@@ -33,6 +33,20 @@ class FacadeBalanceTable extends ModelBase{
 		if(isset($id) && $id !=''){
 
 			try{  
+				
+				$sql3 = "SELECT * FROM AccountMoney WHERE SID=:sid";
+				$stmt2 = $this->db->prepare($sql3);
+				$stmt2->bindParam(':sid',$id);
+				$stmt2->execute();
+						while($row = $stmt2->fetch()) {
+               $account = $row['account_balance'];
+				    }
+						if($account < $output){
+							//tran_flg:1 残高不足
+							$tran_flg = 1;	
+							return $tran_flg;	
+						}
+				
 				$this->db->beginTransaction();
 				$sql3 = "SELECT * FROM AccountMoney WHERE SID=:sid FOR UPDATE";
 				$sql = $this->db->prepare("UPDATE AccountMoney SET account_balance = account_balance -:output WHERE SID=:sid");
@@ -50,12 +64,9 @@ class FacadeBalanceTable extends ModelBase{
 				$stmt3->closeCursor(); 
 				$sql->closeCursor(); 
 				$this->db->commit();
-						$result = $stmt3->fetchAll();
-						var_dump($result);
-						while($row = $stmt3->fetch()) {
-							  $balance = $row['account_balance'];
-
-			      }
+			  //tran_flg; 0 トランザクション正常完了
+				$tran_flg = 0;
+				return $tran_flg;
 			}catch(PDOException $e){
 				$this->db->rollback();
 			}

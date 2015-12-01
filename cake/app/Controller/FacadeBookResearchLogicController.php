@@ -33,7 +33,8 @@ Class FacadeBookResearchLogicController{
 			  $this->name = $name;
 				$facade_customer_info = new FacadeBalanceTable();
 				if(isset($this->name)){
-					$facade_customer_info->updateAccountMoney($this->name,$output);
+					$tran_flg = $facade_customer_info->updateAccountMoney($this->name,$output);
+							return $tran_flg;		
 				}	
 			}
 			public function bookInfoGet(){
