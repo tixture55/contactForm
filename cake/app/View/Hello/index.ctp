@@ -143,15 +143,28 @@ echo '<p>';
 echo '</ul>';
 echo '</div>';
 
-echo '<h3>振込履歴</h3>';
+echo '<h3>振込処理</h3>';
 echo '<div>';
 echo '<p>';
-echo 'セクション2のコンテンツ領域です。';
+echo $this->Form->create('hello', array('action' => 'add','method' => 'post'));
+echo $this->Form->hidden(
+'id' ,
+array('value' => $id)
+);
+echo $this->Form->input(
+		'plice',
+		array('label' => '金額')
+		);
 echo '</p>';
-echo '<ul>';
-echo '<li>リスト項目1</li>';
-echo '<li>リスト項目2</li>';
-echo '<li>リスト項目3</li>';
+echo '<p>';
+echo $this->Form->input(
+		'account',
+		array('label' => '入金先お客様ID')
+		);
+echo '</p>';
+echo '<p>';
+echo $this->Form->end('振込確認');
+echo '</p>';
 echo '</ul>';
 echo '</div>';
 
