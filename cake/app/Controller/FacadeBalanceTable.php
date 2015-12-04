@@ -9,7 +9,7 @@ class FacadeBalanceTable extends ModelBase{
 	public function getList($id,$type){
 		if(isset($id) && $id !='' && $type == 1){
 
-			$sql = $this->db->prepare("SELECT * FROM AccountMoney WHERE SID=:sid");
+			$sql = $this->db->prepare("SELECT SID,name,account_balance FROM AccountMoney WHERE SID=:sid");
 
 		}else{
 

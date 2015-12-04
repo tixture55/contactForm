@@ -12,7 +12,7 @@ class HellosController extends AppController
 	public $id;  //userID 
 	public $list;  // 本情報
 	public $value;  // 本情報
-
+  public $uses = array('User');
 
 
 public function index($id){
