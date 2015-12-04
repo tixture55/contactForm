@@ -3,30 +3,24 @@
 require_once('FacadeAuthCheckTable.php');
 
 Class FacadeAuthLogicController{
-	
-	    protected $name;
-	    protected $pass;
-	    protected $list;
 
-				private static $instance = null;
+	protected $name;
+	protected $pass;
+	protected $list;
+	protected $fact;
 
 
-				//インスタンスを取得するメソッドを追加
-				public static function getInstance(){
-								if (is_null(self::$instance)){
-												self::$instance = new FacadeBookResearchLogic();
-								}
-								//インスタンスを返却する
-								return self::$instance;
-
-				}
-			public function authCompare($name,$pass){
-						$this->name = $name;
-						$this->pass = $pass;
-						
-						$facade_auth_check = new FacadeAuthCheckTable();
-						$this->list = $facade_auth_check->getList($this->name,$this->pass);
-						return $this->list;
-			}
-      
+	public function __construct(FacadeAuthCheckTable $fact = null) {
+		$this->fact = $fact ? $fact : new FacadeAuthCheckTable();
 	}
+
+
+	public function authCompare($name,$pass){
+		$this->name = $name;
+		$this->pass = $pass;
+
+		$this->list = $this->fact->getList($this->name,$this->pass);
+		return $this->list;
+	}
+
+}
