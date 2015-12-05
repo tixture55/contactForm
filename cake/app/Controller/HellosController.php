@@ -6,11 +6,9 @@ session_start();
 require_once('FacadeBookResearchLogicController.php');
 class HellosController extends AppController
 {
-	/** ビュー未使用 */
-	public $autoRender = true;
 	public $name = Hello;  // 商品名
-	public $id;  //userID 
-	public $list;  // 本情報
+	protected $id;  //userID 
+	protected $list;  // 本情報
 	public $value;  // 本情報
   public $uses = array('User');
 
@@ -101,12 +99,4 @@ public function output_done(){
 			$this->set('id',$this->id);
 
 }
-}
-// インスタンス生成
-//$product= new HellosController();
-if(isset($_POST['book'])){
-	$book_name = $_POST['book'];
-	$_SESSION['flg'] ="ok";
-	// 商品名を設定
-	//$product->index($book_name);
 }
