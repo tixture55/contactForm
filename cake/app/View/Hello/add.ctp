@@ -26,6 +26,10 @@ echo $this->Form->hidden(
 array('value' => $id)
 );
 echo $this->Form->hidden(
+'commission' ,
+array('value' => $commission)
+);
+echo $this->Form->hidden(
 'plice' ,
 array('value' => $plice)
 );
@@ -40,6 +44,9 @@ echo '</td>';
 echo '<td>';
 echo '金額';
 echo '</td>';
+echo '<td>';
+echo '出金手数料';
+echo '</td>';
 echo '</tr>';
 
 	echo '<tr>';
@@ -52,6 +59,9 @@ echo '</tr>';
 	echo '</td>';
 	echo '<td>';
 	echo number_format($plice).'円';
+	echo '</td>';
+	echo '<td>';
+	echo number_format($commission).'円';
 	echo '</td>';
 
 	echo '</tr>';

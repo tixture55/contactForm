@@ -72,6 +72,17 @@ public function index($id){
 		echo '</table>';
 	}
 public function add(){
+		
+		//振込手数料の計算
+		$tstrp = strpos(date(DATE_ATOM),'T');
+		$now_time = mb_substr(date(DATE_ATOM),$tstrp + 1 ,2);
+    if($now_time > 17 || $now_time < 9){
+				$commission = 216;
+		}else{
+				$comission = 108;
+		}
+
+		$this->set('commission',$commission);
 		$this->set('plice',$this->data['hello']['plice']);
 		$this->set('id',$this->data['hello']['id']);
 }
@@ -80,7 +91,7 @@ public function output_done(){
 		$this->id = $this->data['hello']['id'];
 		//DBで取得したいタイプの指定：(1:残高テーブルの値取得 2:残高テーブルの値更新)
 		$result_search = new FacadeBookResearchLogicController();
-		$tran_flg = $result_search->balanceUpdate($this->id,2,$this->data['hello']['plice']);
+		$tran_flg = $result_search->balanceUpdate($this->id,2,$this->data['hello']['plice'] + $this->data['hello']['commission']);
 		$tran_flg = intval($tran_flg);
 		if($tran_flg == 1){
 			$this->set('flg',$tran_flg);

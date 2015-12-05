@@ -30,16 +30,15 @@ class LoginsController extends AppController
 			//認証テーブルにアクセス
 			$auth_search = new FacadeAuthLogicController();
 			$this->auth_info = $auth_search->authCompare($this->data['login']['username'],$this->data['login']['password']);
-			var_dump($this->auth_info);
 			if(!empty($this->auth_info)){
 				$id = array_shift($this->auth_info);
-				//return $this->redirect(array('controller' => 'hellos','action' => 'index', $id));	
+				return $this->redirect(array('controller' => 'hellos','action' => 'index', $id));	
 			}else{
-				//return $this->redirect(array('controller' => 'logins','action' => 'index'));	
+				return $this->redirect(array('controller' => 'logins','action' => 'index'));	
 
 			}
 		}else{
-				//return $this->redirect(array('controller' => 'logins','action' => 'index'));	
+				return $this->redirect(array('controller' => 'logins','action' => 'index'));	
 
 			}
 	}
