@@ -2,37 +2,32 @@
 /**
  * /app/Controller/HellosController.php
  */
+session_start();
 require_once('FacadeBookResearchLogicController.php');
 class HellosController extends AppController
 {
 	/** ビュー未使用 */
 	public $autoRender = true;
-	protected $id;  //userID 
-	protected $list;  // user情報
+	public $name = Hello;  // 商品名
+	public $id;  //userID 
+	public $list;  // 本情報
 	public $value;  // 本情報
-	public $uses = array('User');
-  protected $fbrl;
+	//public $uses = array('Hello');
 
-
-	public function __construct($as = null, $r = null){
-				$this->fbrl = new FacadeBookResearchLogicController();
-		parent::__construct($as,$r);  // この処理を追加
-	}
 
 	public function index($id){
+		$this->Session->read('id');
+		$this->Session->read('list_balance');
+		//$this->render('/Hello/test');
 		$this->id = $id;
-		
 		//DB検索ロジックに値を渡す
-		
+		$result_search = new FacadeBookResearchLogicController();
 		//facadeにほんの名前をセット
-		$this->list = $this->fbrl->customerSearch($this->id,0);
-		
+		$this->list = $result_search->customerSearch($this->id,0);
 		//残高を計算するためクラスのインスタンス変数を定義
-		//$result_search = new FacadeBookResearchLogicController();
-		
+		$result_search = new FacadeBookResearchLogicController();
 		//DBで取得したいタイプの指定：(1:残高テーブルの値取得)
-		$this->list_balance = $this->fbrl->customerSearch($this->id,1);
-		
+		$this->list_balance = $result_search->customerSearch($this->id,1);
 		$this->set('balance',$this->list_balance);
 		$this->set('id',$this->id);
 
@@ -84,32 +79,55 @@ class HellosController extends AppController
 		if($now_time > 17 || $now_time < 9){
 			$commission = 216;
 		}else{
-			$comission = 108;
+			$commission = 108;
 		}
 
 		$this->set('commission',$commission);
-		$this->set('plice',$this->data['hello']['plice']);
+		if(isset($plice)){
+			$this->set('plice',$this->data['hello']['plice']);
+		}
+		$this->set('transfer',$this->data['hello']['transfer']);
+		if(isset($this->data['hello']['trans_acc'])){
+			$this->set('trans_acc',$this->data['hello']['trans_acc']);
+		}
 		$this->set('id',$this->data['hello']['id']);
+		/*if($this->Hello->validates()){ //エラーがなければ
+		}else{
+			$this->render('index');
+		}*/
 	}
 	public function output_done(){
 
 		$this->id = $this->data['hello']['id'];
 		//DBで取得したいタイプの指定：(1:残高テーブルの値取得 2:残高テーブルの値更新)
 		$result_search = new FacadeBookResearchLogicController();
-		$tran_flg = $result_search->balanceUpdate($this->id,2,$this->data['hello']['plice'] + $this->data['hello']['commission']);
+		//trans_flg:トランザクション処理の結果 0 →  正常終了
+		if(isset($this->data['hello']['plice']) && !isset($this->data['hello']['transfer'])){
+			$out_plice = $this->data['hello']['plice'];
+			$tran_flg = $result_search->balanceUpdate($this->id,2,$this->data['hello']['plice'] + $this->data['hello']['commission']);
+			$trans_type = 0;
+		}else{
+			$out_plice = $this->data['hello']['transfer'];
+			$trans_type = 1;
+			$tran_flg = $result_search->balanceUpdate($this->id,2,$this->data['hello']['transfer'] + $this->data['hello']['commission']);
+			
+		}
 		$tran_flg = intval($tran_flg);
 		if($tran_flg == 1){
 			$this->set('flg',$tran_flg);
 		}else{
-			$this->set('plice',$this->data['hello']['plice']);
+			$this->set('plice',$out_plice);
+			$this->set('trans_type',$trans_type);
 		}
 		$this->set('id',$this->id);
 
 	}
 }
 // インスタンス生成
+//$product= new HellosController();
 if(isset($_POST['book'])){
 	$book_name = $_POST['book'];
 	$_SESSION['flg'] ="ok";
 	// 商品名を設定
+	//$product->index($book_name);
 }

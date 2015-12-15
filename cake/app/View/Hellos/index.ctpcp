@@ -30,17 +30,19 @@ collapsible: true
 </p>
 <?php 
 
-//print_r($balance);
-$balance_money = array_pop($balance);
+if(isset($balance)){
+	$balance_money = array_pop($balance);
 
-echo '<table border="1">';
-echo $this->Html->tableCells(array(
-			'口座残高','最終入出金日'
-			));
-echo $this->Html->tableCells(array(
-			number_format($balance_money).'円','最終入出金日'
-			));
+	echo '<table border="1">';
+	echo $this->Html->tableCells(array(
+				'口座残高','最終入出金日'
+				));
+	echo $this->Html->tableCells(array(
+				number_format($balance_money).'円','最終入出金日'
+				
+				));
 echo '</table>';
+}
 echo '<table border="1">';
 echo $this->Html->tableCells(array(
 			array(
@@ -123,19 +125,19 @@ echo '<h3>出金処理</h3>';
 echo '<div>';
 echo $this->Form->create('hello', array('action' => 'add','method' => 'post'));
 echo $this->Form->hidden(
-'id' ,
-array('value' => $id)
-);
+		'id' ,
+		array('value' => $id)
+		);
 echo $this->Form->input(
-		'plice',
+		'hello.plice',
 		array('label' => '金額')
 		);
 echo $this->Form->input(
-		'username',
+		'hello.bank',
 		array('label' => '入金先銀行')
 		);
 echo $this->Form->input(
-		'account',
+		'hello.account',
 		array('label' => '入金先口座番号')
 		);
 echo $this->Form->end('出金');
@@ -148,17 +150,17 @@ echo '<div>';
 echo '<p>';
 echo $this->Form->create('hello', array('action' => 'add','method' => 'post'));
 echo $this->Form->hidden(
-'id' ,
-array('value' => $id)
-);
+		'id' ,
+		array('value' => $id)
+		);
 echo $this->Form->input(
-		'plice',
+		'transfer',
 		array('label' => '金額')
 		);
 echo '</p>';
 echo '<p>';
 echo $this->Form->input(
-		'account',
+		'trans_acc',
 		array('label' => '入金先お客様ID')
 		);
 echo '</p>';
@@ -180,20 +182,15 @@ echo '<li>リスト項目1</li>';
 echo '<li>リスト項目2</li>';
 echo '<li>リスト項目3</li>';
 /*
-echo '</ul>';
-echo '</div>';
-*/
+	 echo '</ul>';
+	 echo '</div>';
+ */
 echo '</p>';
 echo '</div>';
 echo '</div>';
 echo '</p>';
 
 echo $this->Form->create('hello', array('action' => 'add','method' => 'post'));
-echo $this->Form->input(
-		'username',
-		array('label' => '株価検索(銘柄もしくは株コードを入力)')
-		);
-echo $this->Form->end('検索');
 
 ?>
 </p>

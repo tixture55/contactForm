@@ -22,7 +22,12 @@ body {
 if(isset($flg) && $flg == 1){
 	echo '残金が足りなかったため出金できませんでした。';}
 	else{
-		echo $plice.'円の出金を実行しました';
+		if(isset($trans_type) && $trans_type == 0){
+			echo $plice.'円の出金を実行しました';
+		}elseif(isset($trans_type) && $trans_type == 1){
+			echo $plice.'円の振込を実行しました';
+
+		}
 	}
 echo '<table border="1">';
 echo $this->Html->tableCells(array(

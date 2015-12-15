@@ -1,29 +1,28 @@
 <?php
 require_once('ModelBase.php');
 
-class FacadeBalanceTable extends ModelBase{
+class FacadeAuthCheckTable extends ModelBase{
 
 	protected $name;
 	protected $list;
 
-	public function getList($id,$type){
-		if(isset($id) && $id !='' && $type == 1){
-
-			$sql = $this->db->prepare("SELECT SID,name,account_balance,last_modify FROM AccountMoney WHERE SID=:sid");
+	public function getList($user,$pass){
+		if(isset($user) && $user !='' && isset($pass)){
+			$sql = $this->db->prepare("SELECT * FROM Auth where username=:user AND pass=:pass");
 
 		}else{
 
 		}
-		$sql->bindParam(':sid',$id);
+		$sql->bindParam(':user',$user);
+		$sql->bindParam(':pass',$pass);
 		$sql->execute();
-		$row_count_data =$sql->rowCount();
 		while($row = $sql->fetch()) {
-			$id = $row['SID'];
+			$id = $row['id'];
+			$sid = $row['SID'];
 			$id = intval($id);
-			$name = $row['name'];
-			$account_balance = $row['account_balance'];
-			$last_modify = $row['last_modify'];
-			$list = array('ID'=>$id, 'NAME'=>$name,  'BALANCE'=>$account_balance, 'LAST_MODIFY'=>$last_modify); 
+			$sid = intval($sid);
+			$name = $row['username'];
+			$list = array('ID'=>$id, 'SID'=>$sid, 'NAME'=>$name); 
 
 		}
 		$this->list = $list;
@@ -34,20 +33,6 @@ class FacadeBalanceTable extends ModelBase{
 		if(isset($id) && $id !=''){
 
 			try{  
-				
-				$sql3 = "SELECT * FROM AccountMoney WHERE SID=:sid";
-				$stmt2 = $this->db->prepare($sql3);
-				$stmt2->bindParam(':sid',$id);
-				$stmt2->execute();
-						while($row = $stmt2->fetch()) {
-               $account = $row['account_balance'];
-				    }
-						if($account < $output){
-							//tran_flg:1 残高不足
-							$tran_flg = 1;	
-							return $tran_flg;	
-						}
-				
 				$this->db->beginTransaction();
 				$sql3 = "SELECT * FROM AccountMoney WHERE SID=:sid FOR UPDATE";
 				$sql = $this->db->prepare("UPDATE AccountMoney SET account_balance = account_balance -:output WHERE SID=:sid");
@@ -65,9 +50,12 @@ class FacadeBalanceTable extends ModelBase{
 				$stmt3->closeCursor(); 
 				$sql->closeCursor(); 
 				$this->db->commit();
-			  //tran_flg; 0 トランザクション正常完了
-				$tran_flg = 0;
-				return $tran_flg;
+						$result = $stmt3->fetchAll();
+						var_dump($result);
+						while($row = $stmt3->fetch()) {
+							  $balance = $row['account_balance'];
+
+			      }
 			}catch(PDOException $e){
 				$this->db->rollback();
 			}
