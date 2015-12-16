@@ -27,6 +27,10 @@ if(isset($plice) && !isset($transfer)){
 			array('value' => $id)
 			);
 	echo $this->Form->hidden(
+			'trans_status' ,
+			array('value' => 0)
+			);
+	echo $this->Form->hidden(
 			'commission' ,
 			array('value' => $commission)
 			);

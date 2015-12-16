@@ -8,6 +8,7 @@ class HellosController extends AppController
 	/** ビュー未使用 */
 	public $autoRender = true;
 	protected $id;  //userID 
+	protected $trans_type;  //userID 
 	protected $list;  // user情報
 	public $value;  // 本情報
 	public $uses = array('User');
@@ -82,18 +83,20 @@ class HellosController extends AppController
 		$tstrp = strpos(date(DATE_ATOM),'T');
 		$now_time = mb_substr(date(DATE_ATOM),$tstrp + 1 ,2);
 		if($now_time > 17 || $now_time < 9){
-			$commission = 216;
+			$comission = 216;
 		}else{
 			$comission = 108;
 		}
 
-		$this->set('commission',$commission);
+		$this->set('commission',$comission);
 		$this->set('plice',$this->data['hello']['plice']);
 		$this->set('id',$this->data['hello']['id']);
+		$this->set('trans_status',$this->data['hello']['trans_status']);
 	}
 	public function output_done(){
 
 		$this->id = $this->data['hello']['id'];
+		$this->trans_type = $this->data['hello']['trans_status'];
 		//DBで取得したいタイプの指定：(1:残高テーブルの値取得 2:残高テーブルの値更新)
 		$result_search = new FacadeBookResearchLogicController();
 		$tran_flg = $result_search->balanceUpdate($this->id,2,$this->data['hello']['plice'] + $this->data['hello']['commission']);
@@ -104,6 +107,7 @@ class HellosController extends AppController
 			$this->set('plice',$this->data['hello']['plice']);
 		}
 		$this->set('id',$this->id);
+		$this->set('trans_type',$this->trans_type);
 
 	}
 }

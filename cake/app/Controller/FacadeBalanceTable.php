@@ -51,6 +51,7 @@ class FacadeBalanceTable extends ModelBase{
 				$this->db->beginTransaction();
 				$sql3 = "SELECT * FROM AccountMoney WHERE SID=:sid FOR UPDATE";
 				$sql = $this->db->prepare("UPDATE AccountMoney SET account_balance = account_balance -:output WHERE SID=:sid");
+				$sql4 = $this->db->prepare("INSERT INTO output_history values(null,:output,now()) ");
 				$sql2 = "SELECT account_balance FROM AccountMoney WHERE SID=:sid";
 				$stmt2 = $this->db->prepare($sql3);
 				$stmt3 = $this->db->prepare($sql2);
@@ -58,6 +59,7 @@ class FacadeBalanceTable extends ModelBase{
 				$stmt2->bindParam(':sid',$id);
 				$stmt3->bindParam(':sid',$id);
 				$sql->bindParam(':output',$output);
+				$sql4->bindParam(':output',$output);
 				$stmt2->execute();
 				$stmt3->execute();
 				$sql->execute();

@@ -127,6 +127,10 @@ echo $this->Form->hidden(
 		'id' ,
 		array('value' => $id)
 		);
+echo $this->Form->hidden(
+		'trans_status' ,
+		array('value' => 0)
+		);
 echo $this->Form->input(
 		'hello.plice',
 		array('label' => '金額')
