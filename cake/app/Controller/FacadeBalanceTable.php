@@ -51,20 +51,24 @@ class FacadeBalanceTable extends ModelBase{
 				$this->db->beginTransaction();
 				$sql3 = "SELECT * FROM AccountMoney WHERE SID=:sid FOR UPDATE";
 				$sql = $this->db->prepare("UPDATE AccountMoney SET account_balance = account_balance -:output WHERE SID=:sid");
-				$sql4 = $this->db->prepare("INSERT INTO output_history values(null,:output,now()) ");
+				//$sql4 = $this->db->prepare("INSERT INTO output_history (id,output_value,output_date) values(null,:output,now())");
+			$sql4 = "insert into output_history (id,output_value,output_date) values(null,:output,now())";
 				$sql2 = "SELECT account_balance FROM AccountMoney WHERE SID=:sid";
 				$stmt2 = $this->db->prepare($sql3);
 				$stmt3 = $this->db->prepare($sql2);
+				$stmt4 = $this->db->prepare($sql4);
 				$sql->bindParam(':sid',$id);
 				$stmt2->bindParam(':sid',$id);
 				$stmt3->bindParam(':sid',$id);
 				$sql->bindParam(':output',$output);
-				$sql4->bindParam(':output',$output);
+				$stmt4->bindParam(':output',$output);
 				$stmt2->execute();
 				$stmt3->execute();
+				$stmt4->execute();
 				$sql->execute();
 				$stmt2->closeCursor(); 
 				$stmt3->closeCursor(); 
+				$stmt4->closeCursor(); 
 				$sql->closeCursor(); 
 				$this->db->commit();
 			  //tran_flg; 0 トランザクション正常完了
