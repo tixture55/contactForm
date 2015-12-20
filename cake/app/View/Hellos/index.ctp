@@ -26,7 +26,45 @@ collapsible: true
 </head>
 <body>
 </p>
-<?php 
+
+
+
+<table border="1">
+<tr>
+<td>
+お客様ID
+</td>
+<td>
+姓
+</td>
+<td>
+名
+</td>
+<td>
+電話番号
+</td>
+</tr>
+
+<?php
+if(isset($list)){
+	foreach ($list as $this->value) {
+		echo '<tr>';
+		echo '<td>';
+		echo $this->value['ID'];
+		echo '</td>';
+		echo '<td>';
+		echo $this->value['LASTNAME'];
+		echo '</td>';
+		echo '<td>';
+		echo $this->value['FNAME'];
+		echo '</td>';
+		echo '<td>';
+		echo $this->value['TELE'];
+		echo '</td>';
+		echo '</tr>';
+		}
+	echo '</table>';
+}
 
 if(isset($balance)){
 	$balance_last_modify = array_pop($balance);
@@ -38,9 +76,9 @@ if(isset($balance)){
 				));
 	echo $this->Html->tableCells(array(
 				number_format($balance_money).'円',$balance_last_modify
-				
+
 				));
-echo '</table>';
+	echo '</table>';
 }
 echo '<table border="1">';
 echo $this->Html->tableCells(array(

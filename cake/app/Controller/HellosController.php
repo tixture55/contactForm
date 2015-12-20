@@ -27,9 +27,7 @@ class HellosController extends AppController
 		
 		//facadeにほんの名前をセット
 		$this->list = $this->fbrl->customerSearch($this->id,0);
-		
-		//残高を計算するためクラスのインスタンス変数を定義
-		//$result_search = new FacadeBookResearchLogicController();
+		$this->set('list',$this->list);
 		
 		//DBで取得したいタイプの指定：(1:残高テーブルの値取得)
 		$this->list_balance = $this->fbrl->customerSearch($this->id,1);
@@ -40,42 +38,6 @@ class HellosController extends AppController
 
 
 
-		echo '<table border="1">';
-		echo '<tr>';
-		echo '<td>';
-		echo 'お客様ID';
-		echo '</td>';
-		echo '<td>';
-		echo '姓';
-		echo '</td>';
-		echo '<td>';
-		echo '名';
-		echo '</td>';
-		echo '<td>';
-		echo '電話番号';
-		echo '</td>';
-		echo '</tr>';
-
-		foreach ($this->list as $this->value) { 
-			echo '<tr>';
-			echo '<td>';
-			echo $this->value['ID']; 
-			echo '</td>';
-
-			echo '<td>';
-			echo $this->value['LASTNAME']; 
-			echo '</td>';
-			echo '<td>';
-			echo $this->value['FNAME']; 
-			echo '</td>';
-			echo '<td>';
-			echo $this->value['TELE']; 
-			echo '</td>';
-
-			echo '</tr>';
-		}
-
-		echo '</table>';
 	}
 	public function add(){
 
@@ -115,5 +77,4 @@ class HellosController extends AppController
 if(isset($_POST['book'])){
 	$book_name = $_POST['book'];
 	$_SESSION['flg'] ="ok";
-	// 商品名を設定
 }
