@@ -52,13 +52,5 @@ Class FacadeBookResearchLogicController{
 								$this->name = 'other';
 					}
 			}
-			public function search_getAuthor(){
-					return $this->name;
-			}
       
-			public function search_getFloor($name){
-					
-					
-					return $this->floor;
-			}
 	}

@@ -34,7 +34,5 @@ class AppController extends Controller {
 
    var $components = array( 'DebugKit.Toolbar');
    
-   public function afterFilter() {
-					 }
 
 }

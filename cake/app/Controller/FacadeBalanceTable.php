@@ -16,7 +16,6 @@ class FacadeBalanceTable extends ModelBase{
 		}
 		$sql->bindParam(':sid',$id);
 		$sql->execute();
-		$row_count_data =$sql->rowCount();
 		while($row = $sql->fetch()) {
 			$id = $row['SID'];
 			$id = intval($id);

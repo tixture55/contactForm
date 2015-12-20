@@ -8,7 +8,7 @@ class FacadeAuthCheckTable extends ModelBase{
 
 	public function getList($user,$pass){
 		if(isset($user) && $user !='' && isset($pass)){
-			$sql = $this->db->prepare("SELECT * FROM Auth where username=:user AND pass=:pass");
+			$sql = $this->db->prepare("SELECT id,SID,username FROM Auth where username=:user AND pass=:pass");
 
 		}else{
 
@@ -19,8 +19,6 @@ class FacadeAuthCheckTable extends ModelBase{
 		while($row = $sql->fetch()) {
 			$id = $row['id'];
 			$sid = $row['SID'];
-			$id = intval($id);
-			$sid = intval($sid);
 			$name = $row['username'];
 			$list = array('ID'=>$id, 'SID'=>$sid, 'NAME'=>$name); 
 
@@ -34,7 +32,7 @@ class FacadeAuthCheckTable extends ModelBase{
 
 			try{  
 				$this->db->beginTransaction();
-				$sql3 = "SELECT * FROM AccountMoney WHERE SID=:sid FOR UPDATE";
+				$sql3 = "SELECT account_balance FROM AccountMoney WHERE SID=:sid FOR UPDATE";
 				$sql = $this->db->prepare("UPDATE AccountMoney SET account_balance = account_balance -:output WHERE SID=:sid");
 				$sql2 = "SELECT account_balance FROM AccountMoney WHERE SID=:sid";
 				$stmt2 = $this->db->prepare($sql3);
@@ -51,7 +49,7 @@ class FacadeAuthCheckTable extends ModelBase{
 				$sql->closeCursor(); 
 				$this->db->commit();
 						$result = $stmt3->fetchAll();
-						var_dump($result);
+						
 						while($row = $stmt3->fetch()) {
 							  $balance = $row['account_balance'];
 
