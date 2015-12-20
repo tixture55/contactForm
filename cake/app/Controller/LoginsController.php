@@ -21,11 +21,14 @@ class LoginsController extends AppController
 	public function auth(){
 		$this->render('/login/login');
 
-		if($this->data['login']['username'] !='' && $this->data['login']['password'] && isset($this->data['login']['username']) && isset($this->data['login']['password'])){
+$esc_username = htmlspecialchars($this->data['login']['username'],ENT_QUOTES,"UTF-8");
+$esc_password = htmlspecialchars($this->data['login']['password'],ENT_QUOTES,"UTF-8");
+
+		if($esc_username !='' && $esc_password && isset($esc_username) && isset($esc_password)){
 
 			//認証テーブルにアクセス
 			$auth_search = new FacadeAuthLogicController();
-			$this->auth_info = $auth_search->authCompare($this->data['login']['username'],$this->data['login']['password']);
+			$this->auth_info = $auth_search->authCompare($esc_username,$esc_password);
 			if(!empty($this->auth_info)){
 				$id = array_shift($this->auth_info);
 				return $this->redirect(array('controller' => 'hellos','action' => 'index', $id));	
