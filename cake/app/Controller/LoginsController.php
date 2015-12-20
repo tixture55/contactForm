@@ -42,7 +42,3 @@ class LoginsController extends AppController
 			}
 	}
 }
-if(isset($_POST['book'])){
-	$book_name = $_POST['book'];
-	$_SESSION['flg'] ="ok";
-}
