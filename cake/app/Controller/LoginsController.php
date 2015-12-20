@@ -16,9 +16,6 @@ class LoginsController extends AppController
 	public function index(){
 		$this->render('/login/login');
 
-		//DB検索ロジックに値を渡す
-		$result_search = new FacadeBookResearchLogicController();
-		//facadeにほんの名前をセット
 
 	}
 	public function auth(){
