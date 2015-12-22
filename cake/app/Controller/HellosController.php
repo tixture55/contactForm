@@ -2,36 +2,37 @@
 /**
  * /app/Controller/HellosController.php
  */
-require_once('FacadeBookResearchLogicController.php');
+require_once('FacadeLogicController.php');
 class HellosController extends AppController
 {
 	/** ビュー未使用 */
-	public $autoRender = true;
 	protected $id;  //userID 
 	protected $trans_type;  //userID 
 	protected $list;  // user情報
-	public $value;  // 本情報
+	protected $history;  //出金履歴
 	public $uses = array('User');
   protected $fbrl;
 
 
 	public function __construct($as = null, $r = null){
-				$this->fbrl = new FacadeBookResearchLogicController();
+				$this->fbrl = new FacadeLogicController();
 		parent::__construct($as,$r);  // この処理を追加
 	}
 
 	public function index($id){
 		$this->id = $id;
 		
-		//DB検索ロジックに値を渡す
 		
-		//facadeにほんの名前をセット
 		$this->list = $this->fbrl->customerSearch($this->id,0);
 		$this->set('list',$this->list);
 		
 		//DBで取得したいタイプの指定：(1:残高テーブルの値取得)
 		$this->list_balance = $this->fbrl->customerSearch($this->id,1);
 		
+		//出金履歴の取得
+		$this->history = $this->fbrl->historySearch($this->id,3);
+		
+		$this->set('history',$this->history);
 		$this->set('balance',$this->list_balance);
 		$this->set('id',$this->id);
 
@@ -60,7 +61,7 @@ class HellosController extends AppController
 		$this->id = $this->data['hello']['id'];
 		$this->trans_type = $this->data['hello']['trans_status'];
 		//DBで取得したいタイプの指定：(1:残高テーブルの値取得 2:残高テーブルの値更新)
-		$result_search = new FacadeBookResearchLogicController();
+		$result_search = new FacadeLogicController();
 		$tran_flg = $result_search->balanceUpdate($this->id,2,$this->data['hello']['plice'] + $this->data['hello']['commission']);
 		$tran_flg = intval($tran_flg);
 		if($tran_flg == 1){
@@ -72,9 +73,4 @@ class HellosController extends AppController
 		$this->set('trans_type',$this->trans_type);
 
 	}
-}
-// インスタンス生成
-if(isset($_POST['book'])){
-	$book_name = $_POST['book'];
-	$_SESSION['flg'] ="ok";
 }

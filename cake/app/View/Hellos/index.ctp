@@ -109,53 +109,19 @@ echo $this->Html->tableCells(array(
 				array())) 
 	. PHP_EOL;
 	echo '<div id="accordion">';
-	echo '<h3>出金履歴</h3>';
+	echo '<h3>直近の出金履歴</h3>';
 	echo '<div>';
 	echo '<p>';
-	if(isset($this->intro_list)){
+if(isset($history)){
 
-		echo '<table border="1">';
-
-		echo '<tr>';
-		echo '<td>';
-		echo 'ご紹介番号';
-		echo '</td>';
-		echo '<td>';
-		echo 'あなたのID';
-		echo '</td>';
-		echo '<td>';
-		echo 'ご紹介させていただく方のID';
-		echo '</td>';
-		echo '<td>';
-
-		echo 'ご紹介日時';
-		echo '</td>';
-		echo '</tr>';
-		foreach ($this->intro_list as $this->value) {
-			echo '<tr>';
-			echo '<td>';
-			echo '<a href=./Intro.php?no='.$this->value['ID'].'>'.$this->value['ID'].'</a>';
-			echo '</td>';
-			echo '<td>';
-
-			echo $this->value['MEM_ID'];
-
-			echo '</td>';
-			echo '<td>';
-			echo $this->value['FRM'];
-			echo '</td>';
-			echo '<td>';
-			echo $this->value['OCC_TIME'];
-			echo '</td>';
-			echo '</tr>';
-
-
-		}
-		echo '</table>';
+		echo 'お客様ID:'.$history["customerID"];
+		echo '<br>';
+		echo '出金金額(手数料込み):'.number_format($history["output_value"]).'円';
+		echo '<br>';
+		echo '出金日時:'.$history["output_date"];
 	}else{
 		echo '現在出金履歴はありません。';
 	}
-if(isset($intro_status)) echo $intro_status;
 echo '</p>';
 echo '</div>';
 echo '<h3>出金処理</h3>';
@@ -213,21 +179,6 @@ echo '</div>';
 
 
 
-echo '<h3>新着メッセージ</h3>';
-echo '<div>';
-echo '<p>';
-echo 'セクション3のコンテンツ領域です。';
-echo '</p>';
-echo '<ul>';
-echo '<li>リスト項目1</li>';
-echo '<li>リスト項目2</li>';
-echo '<li>リスト項目3</li>';
-/*
-	 echo '</ul>';
-	 echo '</div>';
- */
-echo '</p>';
-echo '</div>';
 echo '</div>';
 echo '</p>';
 

@@ -3,7 +3,7 @@
  * /app/Controller/HellosController.php
  */
 session_start();
-require_once('FacadeBookResearchLogicController.php');
+require_once('FacadeLogicController.php');
 require_once('FacadeAuthLogicController.php');
 class LoginsController extends AppController
 {

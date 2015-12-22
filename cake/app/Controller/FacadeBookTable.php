@@ -17,7 +17,6 @@ $sql = $this->db->prepare("SELECT * FROM Customer left join Teletype on Customer
 						}
 						$sql->bindParam(':sid',$id);
 						$sql->execute();
-						$row_count_data =$sql->rowCount();
 				    $flg = 0;
 						while($row = $sql->fetch()) {
 							  $id = $row['SID'];
@@ -40,7 +39,6 @@ $sql = $this->db->prepare("SELECT * FROM Customer left join Teletype on Customer
 						$this->list = $list;
 						return $this->list;
 				}
-
 
 
 
