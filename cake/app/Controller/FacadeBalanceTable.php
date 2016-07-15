@@ -1,7 +1,8 @@
 <?php
 require_once('ModelBase.php');
+require_once('getFromDb.php');
 
-class FacadeBalanceTable extends ModelBase{
+class FacadeBalanceTable extends ModelBase implements getFromDb{
 
 	protected $name;
 	protected $list;
