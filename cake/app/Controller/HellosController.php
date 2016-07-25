@@ -21,8 +21,10 @@ class HellosController extends AppController
 
 	public function index($id){
 		$this->id = $id;
-		
-		
+		$this->loadModel('Auth');		
+		//$data = $this->Auth->find('all');
+
+
 		$this->list = $this->fbrl->customerSearch($this->id,0);
 		$this->set('list',$this->list);
 		

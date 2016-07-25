@@ -33,13 +33,6 @@ echo '<table border="1">';
 echo $this->Html->tableCells(array(
 array(
 		$this->Html->link(
-			'振込手続き',
-			array(
-				'outputOtherAccount',
-				'index'
-				)
-			),
-		$this->Html->link(
 			'残高照会',
 			array(
 				'action' => 'index',

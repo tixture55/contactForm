@@ -13,7 +13,6 @@ body {
 <script src="<?php echo $this->Html->url('/js/jquery-1.10.1.min.js'); ?>"></script>
 <link rel="stylesheet" href="<?php echo $this->Html->url('/js/jquery-ui-1.11.4/jquery-ui.css'); ?>">
 <script src="<?php echo $this->Html->url('/js/jquery-ui-1.11.4/jquery-ui.js'); ?>"></script>
-<script type="text/javascript" src="./script.js"></script>
 
 <script>
 $(function() {
@@ -84,24 +83,11 @@ echo '<table border="1">';
 echo $this->Html->tableCells(array(
 			array(
 				$this->Html->link(
-					'振込手続き',
-					array(
-						'outputOtherAccount',
-						'index'
-						)
-					),
-				$this->Html->link(
 					'残高照会',
 					array(
 						'outputOtherAccount',
 						'index'
 
-						)),
-				$this->Html->link(
-					'出金処理',
-					array(
-						'controller' => 'outputOtherAccounts',
-						'action' => 'index'
 
 						)),
 

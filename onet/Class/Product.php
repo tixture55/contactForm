@@ -76,6 +76,11 @@ class Product
 								$result_search = new FacadeBookResearchLogic();
 								//facadeにほんの名前をセット
 								$this->list = $result_search->customerSearch($this->name);
+
+								if($_POST['nb'] == 'back'){
+										phpinfo();
+								}
+
 								echo '<table border="1">';
 								echo '<tr>';
 								echo '<td>';
