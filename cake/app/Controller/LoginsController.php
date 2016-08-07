@@ -2,9 +2,11 @@
 /**
  * /app/Controller/HellosController.php
  */
+
 session_start();
-require_once('FacadeLogicController.php');
-require_once('FacadeAuthLogicController.php');
+App::uses('FacadeLogicController', 'Controller');
+App::uses('FacadeAuthLogicController', 'Controller');
+
 class LoginsController extends AppController
 {
 	/** ビュー未使用 */
