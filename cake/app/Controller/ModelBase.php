@@ -4,7 +4,8 @@ define('DB_HOST', 'localhost');
 define('DB_USER', 'root');
 define('DB_PASS', 'xg23y91a');
 
-require_once('DbConfig.php');
+App::uses('DbConfig','Controller');
+
 
 class ModelBase implements DbConfig{
 

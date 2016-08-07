@@ -1,6 +1,6 @@
 <?php
 
-require_once('FacadeAuthCheckTable.php');
+App::uses('FacadeAuthCheckTable' , 'Controller');
 
 Class FacadeAuthLogicController{
 
