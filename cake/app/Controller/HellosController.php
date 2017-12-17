@@ -3,6 +3,7 @@
  * /app/Controller/HellosController.php
  */
 require_once('FacadeLogicController.php');
+
 class HellosController extends AppController
 {
 	/** ビュー未使用 */

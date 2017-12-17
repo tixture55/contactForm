@@ -5,7 +5,7 @@
 <style type="text/css">
 <!--
 body {
-	background-color: #CC99CC;
+	background-color: red;
 }
 -->
 </style>
@@ -13,8 +13,16 @@ body {
 <script src="<?php echo $this->Html->url('/js/jquery-1.10.1.min.js'); ?>"></script>
 <link rel="stylesheet" href="<?php echo $this->Html->url('/js/jquery-ui-1.11.4/jquery-ui.css'); ?>">
 <script src="<?php echo $this->Html->url('/js/jquery-ui-1.11.4/jquery-ui.js'); ?>"></script>
+<script src="<?php echo $this->Html->url('/js/preload.js'); ?>"></script>
+<script src="<?php echo $this->Html->url('/js/underscore.js'); ?>"></script>
+<script src="<?php echo $this->Html->url('/js/backbone.js'); ?>"></script>
+<script src="<?php echo $this->Html->url('/js/app.js'); ?>"></script>
+<script data-main="<?php echo $this->Html->url('/js/main.js'); ?>" src="<?php echo $this->Html->url('/js/require.js'); ?>"></script>
 
 <script>
+
+
+
 $(function() {
 		$( "#accordion" ).accordion({
 collapsible: true
@@ -25,9 +33,6 @@ collapsible: true
 </head>
 <body>
 </p>
-
-
-
 <table border="1">
 <tr>
 <td>
@@ -61,7 +66,7 @@ if(isset($list)){
 		echo $this->value['TELE'];
 		echo '</td>';
 		echo '</tr>';
-		}
+	}
 	echo '</table>';
 }
 
@@ -79,6 +84,18 @@ if(isset($balance)){
 				));
 	echo '</table>';
 }
+/**
+echo $this->Form->input( 'yesno', array( 
+    'type' => 'checkbox', 
+		//  'checked' => true,    // 初期表示で選択させる場合
+		    'label' => 'お知らせメールを受け取る',    // チェックボックスのラベル
+				//  'div' => false        // div親要素の有無(true/false)
+				));
+echo '<br>';
+echo '<br>';
+echo '<br>';
+
+*/
 echo '<table border="1">';
 echo $this->Html->tableCells(array(
 			array(
@@ -92,22 +109,22 @@ echo $this->Html->tableCells(array(
 						)),
 
 				),
-				array())) 
-	. PHP_EOL;
-	echo '<div id="accordion">';
-	echo '<h3>直近の出金履歴</h3>';
-	echo '<div>';
-	echo '<p>';
+			array())) 
+. PHP_EOL;
+echo '<div id="accordion">';
+echo '<h3>直近の出金履歴</h3>';
+echo '<div>';
+echo '<p>';
 if(isset($history)){
 
-		echo 'お客様ID:'.$history["customerID"];
-		echo '<br>';
-		echo '出金金額(手数料込み):'.number_format($history["output_value"]).'円';
-		echo '<br>';
-		echo '出金日時:'.$history["output_date"];
-	}else{
-		echo '現在出金履歴はありません。';
-	}
+	echo 'お客様ID:'.$history["customerID"];
+	echo '<br>';
+	echo '出金金額(手数料込み):'.number_format($history["output_value"]).'円';
+	echo '<br>';
+	echo '出金日時:'.$history["output_date"];
+}else{
+	echo '現在出金履歴はありません。';
+}
 echo '</p>';
 echo '</div>';
 echo '<h3>出金処理</h3>';

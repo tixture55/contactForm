@@ -25,14 +25,6 @@
 // Setup a 'default' cache configuration for use in the application.
 Cache::config('default', array('engine' => 'File'));
 
-//load DebugKit
-CakePlugin::load('DebugKit');
-
-//autoload config
-//require 'vendor'.DS.'autoload.php';
-require_once $_SERVER['DOCUMENT_ROOT'] .'/cake/vendor/autoload.php';
-spl_autoload_unregister(array('App', 'load'));
-spl_autoload_register(array('App', 'load'), true , true);
 /**
  * The settings below can be used to set additional paths to models, views and controllers.
  *
@@ -74,9 +66,9 @@ spl_autoload_register(array('App', 'load'), true , true);
  * advanced ways of loading plugins
  *
  * CakePlugin::loadAll(); // Loads all plugins at once
- * CakePlugin::load('DebugKit'); //Loads a single plugin named DebugKit
  *
  */
+ CakePlugin::load('DebugKit'); //Loads a single plugin named DebugKit
 
 /**
  * To prefer app translation over plugin translation, you can set
@@ -123,3 +115,9 @@ CakeLog::config('error', array(
 	'types' => array('warning', 'error', 'critical', 'alert', 'emergency'),
 	'file' => 'error',
 ));
+
+
+
+spl_autoload_unregister(array('App', 'load'));
+spl_autoload_register(array('App', 'load'), true, true);
+CakePlugin::loadAll();

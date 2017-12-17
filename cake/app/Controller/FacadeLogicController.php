@@ -1,7 +1,6 @@
 <?php
 
-App::uses('FacadeBalanceInfoLogic', 'Controller');
-App::uses('FacadeBalanceTable', 'Controller');
+require_once('FacadeBalanceInfoLogic.php');
 
 Class FacadeLogicController{
 	

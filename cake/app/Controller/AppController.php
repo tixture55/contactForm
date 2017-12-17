@@ -1,6 +1,4 @@
 <?php
-
-//namespace Controllers;
 /**
  * Application level Controller
  *
