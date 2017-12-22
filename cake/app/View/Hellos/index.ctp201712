@@ -7,6 +7,23 @@
 body {
 	background-color: red;
 }
+
+.square_btn{
+    display: inline-block;
+    padding: 0.5em 1em;
+    text-decoration: none;
+    background: #668ad8;/*ボタン色*/
+    color: #FFF;
+    border-bottom: solid 4px #627295;
+    border-radius: 3px;
+}
+.square_btn:active {/*ボタンを押したとき*/
+    -ms-transform: translateY(4px);
+    -webkit-transform: translateY(4px);
+    transform: translateY(4px);/*下に動く*/
+    border-bottom: none;/*線を消す*/
+}
+
 -->
 </style>
 <title>form</title>
@@ -14,8 +31,15 @@ body {
 <link rel="stylesheet" href="<?php echo $this->Html->url('/js/jquery-ui-1.11.4/jquery-ui.css'); ?>">
 <script src="<?php echo $this->Html->url('/js/jquery-ui-1.11.4/jquery-ui.js'); ?>"></script>
 <script src="<?php echo $this->Html->url('/js/preload.js'); ?>"></script>
+<script src="<?php echo $this->Html->url('/js/underscore.js'); ?>"></script>
+<script src="<?php echo $this->Html->url('/js/backbone.js'); ?>"></script>
+<script src="<?php echo $this->Html->url('/js/app.js'); ?>"></script>
+<script data-main="<?php echo $this->Html->url('/js/main.js'); ?>" src="<?php echo $this->Html->url('/js/require.js'); ?>"></script>
 
 <script>
+
+
+
 $(function() {
 		$( "#accordion" ).accordion({
 collapsible: true
@@ -119,6 +143,7 @@ if(isset($history)){
 	echo '現在出金履歴はありません。';
 }
 echo '</p>';
+echo '<input class="square_btn" style="WIDTH: 70px; type="button" value="more info" name="detailCashing">';
 echo '</div>';
 echo '<h3>出金処理</h3>';
 echo '<div>';

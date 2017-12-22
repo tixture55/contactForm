@@ -54,6 +54,39 @@ collapsible: true
 <table border="1">
 <tr>
 <td>
+ドル/円
+</td>
+<td>
+ユーロ/円
+</td>
+<td>
+ポンド/円
+</td>
+<td>
+オーストラリアドル/円
+</td>
+</tr>
+<tr>
+<td>
+113.13
+</td>
+<td>
+133.12
+</td>
+<td>
+178.14
+</td>
+<td>
+79.12
+</td>
+</tr>
+</table>
+
+
+
+<table border="1">
+<tr>
+<td>
 お客様ID
 </td>
 <td>
@@ -163,7 +196,7 @@ echo '<p>';
 echo '</ul>';
 echo '</div>';
 
-echo '<h3>振込処理</h3>';
+echo '<h3>外貨購入</h3>';
 echo '<div>';
 echo '<p>';
 echo $this->Form->create('hello', array('action' => 'add','method' => 'post'));
@@ -195,12 +228,12 @@ echo '</div>';
 
 echo '</div>';
 echo '</p>';
-echo $this->Html->link( '外貨購入へ',    
+echo $this->Html->link( 'メインページへ',    
         array('controller' => 'hellos', 
-              'action' => 'foreign_money', 
+              'action' => 'index', 
               $history["customerID"]),
        array('class'=>'link_style'),    
-      "本当にクリックしてよろしいでしょうか。");
+      "本当にクリックしていいの");
 
 echo $this->Form->create('hello', array('action' => 'add','method' => 'post'));
 

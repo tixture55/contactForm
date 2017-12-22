@@ -76,4 +76,25 @@ class HellosController extends AppController
 		$this->set('trans_type',$this->trans_type);
 
 	}
+
+	public function foreign_money($id){
+		$this->id = $id;
+		$this->loadModel('Auth');		
+		//$data = $this->Auth->find('all');
+
+
+		$this->list = $this->fbrl->customerSearch($this->id,0);
+		$this->set('list',$this->list);
+		
+		//DBで取得したいタイプの指定：(1:残高テーブルの値取得)
+		$this->list_balance = $this->fbrl->customerSearch($this->id,1);
+		
+		//出金履歴の取得
+		$this->history = $this->fbrl->historySearch($this->id,3);
+		
+		$this->set('history',$this->history);
+		$this->set('balance',$this->list_balance);
+		$this->set('id',$this->id);
+		
+	}
 }

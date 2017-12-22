@@ -59,4 +59,37 @@ var TaskView = Backbone.View.extend({
 });
 var taskView = new TaskView({ model: task });
 
+
+var BlahView = Backbone.View.extend({
+
+  events: {
+    "click .square_btn": "transitionUp",
+    "click .button-down": "tranistionDown",
+  },
+
+  transitionUp: function() {
+    console.log("Transition up");
+  },
+
+  tranistionDown: function() {
+    console.log("Transition down")
+  }
+
+});
+
+var blahView = new BlahView({ el: $('#myButtons') });
+
+
+
+
+//var blahView = new TaskView({ el: $('#myButtons') });
+
+var user = new User({ id: 1, name:"一話のプログラマ"});
+//var view = new HelloWorld({model:user});
+console.log(taskView.render().el);
+
+
+
+//console.log(task1.toJSON());
+
 })();
