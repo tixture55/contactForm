@@ -66,9 +66,9 @@ Cache::config('default', array('engine' => 'File'));
  * advanced ways of loading plugins
  *
  * CakePlugin::loadAll(); // Loads all plugins at once
- * CakePlugin::load('DebugKit'); //Loads a single plugin named DebugKit
  *
  */
+ CakePlugin::load('DebugKit'); //Loads a single plugin named DebugKit
 
 /**
  * To prefer app translation over plugin translation, you can set
@@ -115,3 +115,9 @@ CakeLog::config('error', array(
 	'types' => array('warning', 'error', 'critical', 'alert', 'emergency'),
 	'file' => 'error',
 ));
+
+
+
+spl_autoload_unregister(array('App', 'load'));
+spl_autoload_register(array('App', 'load'), true, true);
+CakePlugin::loadAll();

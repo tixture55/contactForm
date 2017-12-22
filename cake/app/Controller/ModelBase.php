@@ -4,7 +4,8 @@ define('DB_HOST', 'localhost');
 define('DB_USER', 'root');
 define('DB_PASS', 'xg23y91a');
 
-class ModelBase{
+require_once('DbConfig.php');
+class ModelBase implements DbConfig{
 
 				protected $db;
 				protected $name;

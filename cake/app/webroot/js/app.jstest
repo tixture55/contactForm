@@ -1,0 +1,38 @@
+(function() {
+
+//Model
+
+var User = Backbone.Model.extend({  
+    defaults:{
+        id: "",
+        name : "",
+    },
+    initialize:function(){
+        console.log("model initialized");
+    }
+});
+var HelloWorld = Backbone.View.extend({  
+    el : "body",
+    events : {
+        'change #name_edit' : "nameChanged"
+    },
+    initialize: function(){
+        console.log("initialized");
+        this.render();
+        this.listenTo(this.model, 'change', this.render);
+    },
+render: function(){
+        $("div").html("id:" + this.model.get("id") + " name:" + this.model.get("name"));
+        return this;
+    },
+    nameChanged : function(event){
+        this.model.set("name", $("#name_edit").val());
+    }
+});
+var user = new User({ id: 1, name:"一羽のプログラマ" });  
+var view = new HelloWorld({model:user});  
+
+
+//console.log(task1.toJSON());
+
+})();

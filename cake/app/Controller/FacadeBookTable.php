@@ -1,12 +1,13 @@
 <?php
 		require_once('ModelBase.php');
+		require_once('getFromDb.php');
 		
-		class FacadeBookTable extends ModelBase{
+		class FacadeBookTable extends ModelBase implements getFromDb{
 		
 				protected $name;
         protected $list;
 
-				public function getList($id){
+				public function getList($id, $type){
 						if(isset($id) && $id !=''){
 
 $sql = $this->db->prepare("SELECT * FROM Customer left join Teletype on Customer.Telephone = Teletype.telephone left join board_status on Customer.SID = board_status.UserID WHERE SID=:sid order by Customer.SID limit 50");
@@ -17,7 +18,6 @@ $sql = $this->db->prepare("SELECT * FROM Customer left join Teletype on Customer
 						}
 						$sql->bindParam(':sid',$id);
 						$sql->execute();
-						$row_count_data =$sql->rowCount();
 				    $flg = 0;
 						while($row = $sql->fetch()) {
 							  $id = $row['SID'];
@@ -40,7 +40,6 @@ $sql = $this->db->prepare("SELECT * FROM Customer left join Teletype on Customer
 						$this->list = $list;
 						return $this->list;
 				}
-
 
 
 
