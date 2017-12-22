@@ -16,7 +16,7 @@ var Task = Backbone.Model.extend({
 		title: "do something!",
 		completed: false
 	},
-	
+	//initial
 	initialize: function(){
 		this.on('initialize', this.setRegisterDate);
 		this.trigger('initialize');
