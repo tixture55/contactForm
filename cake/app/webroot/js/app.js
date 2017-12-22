@@ -29,7 +29,7 @@ var Task = Backbone.Model.extend({
 	}
 
 });
-
+//task valuable
 var task = new Task();
 
 var TaskView = Backbone.View.extend({
