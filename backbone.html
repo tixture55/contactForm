@@ -5,14 +5,6 @@
     <title>タイトル</title>
 </head>
 <body>
-<<<<<<< HEAD
-<h3>今月の勤務の感想入力</h3>
-<br>
-<br>
-今月の感想：
-<br>
-<textarea name="text_impression"></textarea>
-=======
 <h3>お問い合わせフォーム</h3>
 <br>
 <br>
@@ -83,20 +75,21 @@ var task = new Task();
             
         },
         hello: function () {
+	    var hope_date = document.getElementsByName('hope_date');
 	    var elm = document.getElementsByName('text_impression');
 	    var phone = document.getElementsByName('phone');
 	    
 	    $("body").append("<p>テキスト</p>"); // 追記
             this.url_expression = function (param) {
 
-		var head_http_match = param.match(/^http:\/\//);
-		var head_https_match = param.match(/^https:\/\//);
-		var country_domain_match = param.match(/jp|org/);	
+		var head_http_match = param.match(/^http:\/\/[\w\d/%#$&?()~_.=+-]+[uk|jp|org|com]\/[\w\d/%#$&?()_.=+-]+/);
+		var head_https_match = param.match(/^https:\/\/[\w\d/%#$&?()~_.=+-]+[uk|jp|org|com]\/[\w\d/%#$&?()_.=+-]+/);
+		var localhost_filter = param.match(/localhost/);
 	
-		if ( (head_http_match || head_https_match ) && country_domain_match) {
+		if ( ( head_http_match || head_https_match ) && !localhost_filter) {
 			alert(param);		
 		}else{
-			alert('入力された値はURLではありません。');
+			alert('入力された値はlocalhostであるか、またはURLではありません。');
 		}
 	    };
             this.phone_expression = function (param) {
@@ -112,9 +105,10 @@ var task = new Task();
 	    };
             this.date_expression = function (param) {
 
-		var date_match = param.match(/^/);
+		//var date_match = param.match(/\d{4}/\d{1,2}/\d{1,2}/);
+		//var date_match = param.match(/^\d{4}/\d{1,2}/\d{1,2}/);
 	
-		if ( bar_string_phone_match || no_bar_string_phone_match) {
+		if ( date_match ) {
 			alert(param);		
 		}else{
 			alert('入力された値は日付ではありません。');
