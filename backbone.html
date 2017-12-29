@@ -105,10 +105,9 @@ var task = new Task();
 	    };
             this.date_expression = function (param) {
 
-		//var date_match = param.match(/\d{4}/\d{1,2}/\d{1,2}/);
-		//var date_match = param.match(/^\d{4}/\d{1,2}/\d{1,2}/);
-	
-		if ( date_match ) {
+	        var regObj = new RegExp(/\d{4}\/\d{2}\/\d{2}/g);
+		var res = param.match(regObj);
+		if ( res ) {
 			alert(param);		
 		}else{
 			alert('入力された値は日付ではありません。');
@@ -116,7 +115,7 @@ var task = new Task();
 	    };
 	    this.url_expression(elm[0].value);
 	    this.phone_expression(phone[0].value);
-	    //this.date_expression(hope_date[0].value);
+	    this.date_expression(hope_date[0].value);
         },
         render: function () {
             var template = this.template(this.model.toJSON());
