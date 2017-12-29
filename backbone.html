@@ -58,16 +58,22 @@ var task = new Task();
             "click .hello-button": "hello"
         },
         initialize: function () {
-            $('.hello-button').click(this.hello); // 修正
+            $('.hello-button').click(this.hello); 
             this.listenTo(this.collection, 'change', function (model) {
                 console.log('collection catch ' + model.get('name') + ' model change event');
             });
-
+            
+        },
+        expression: function (param) {
         },
         hello: function () {
 	    var elm=document.getElementsByName('text_impression');
-	    alert(elm[0].value);
+	    //alert(elm[0].value);
 	    $("body").append("<p>テキスト</p>"); // 追記
+            this.expression = function (param) {
+            	alert(param);
+	    };
+	    this.expression(elm[0].value);
         },
         render: function () {
             var template = this.template(this.model.toJSON());
