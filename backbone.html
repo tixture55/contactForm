@@ -68,10 +68,19 @@ var task = new Task();
         },
         hello: function () {
 	    var elm=document.getElementsByName('text_impression');
-	    //alert(elm[0].value);
+	    
 	    $("body").append("<p>テキスト</p>"); // 追記
             this.expression = function (param) {
-            	alert(param);
+
+		var head_http_match = param.match(/^http:\/\//);
+		var head_https_match = param.match(/^https:\/\//);
+		var country_domain_match = param.match(/jp/);	
+	
+		if ( (head_http_match || head_https_match ) && country_domain_match) {
+			alert(param);		
+		}else{
+			alert('入力された値はURLではありません。');
+		}
 	    };
 	    this.expression(elm[0].value);
         },
