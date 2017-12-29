@@ -5,12 +5,30 @@
     <title>タイトル</title>
 </head>
 <body>
+<<<<<<< HEAD
 <h3>今月の勤務の感想入力</h3>
 <br>
 <br>
 今月の感想：
 <br>
 <textarea name="text_impression"></textarea>
+=======
+<h3>お問い合わせフォーム</h3>
+<br>
+<br>
+Please input hope date：
+<br>
+<input type="text" name="hope_date"></textarea>
+<br>
+<br>
+Please input your URL：
+<br>
+<input type="text" name="text_impression"></textarea>
+<br>
+<br>
+Please input your phone number：
+<br>
+<input type="text" name="phone">
 <br>
 <br>
 <input class="hello-button" style="WIDTH: 70px;" type="button" value="send" name="detailCashing">
@@ -58,16 +76,53 @@ var task = new Task();
             "click .hello-button": "hello"
         },
         initialize: function () {
-            $('.hello-button').click(this.hello); // 修正
+            $('.hello-button').click(this.hello); 
             this.listenTo(this.collection, 'change', function (model) {
                 console.log('collection catch ' + model.get('name') + ' model change event');
             });
-
+            
         },
         hello: function () {
-	    var elm=document.getElementsByName('text_impression');
-	    alert(elm[0].value);
+	    var elm = document.getElementsByName('text_impression');
+	    var phone = document.getElementsByName('phone');
+	    
 	    $("body").append("<p>テキスト</p>"); // 追記
+            this.url_expression = function (param) {
+
+		var head_http_match = param.match(/^http:\/\//);
+		var head_https_match = param.match(/^https:\/\//);
+		var country_domain_match = param.match(/jp|org/);	
+	
+		if ( (head_http_match || head_https_match ) && country_domain_match) {
+			alert(param);		
+		}else{
+			alert('入力された値はURLではありません。');
+		}
+	    };
+            this.phone_expression = function (param) {
+
+		var bar_string_phone_match = param.match(/^0[7-9]0-\d\d\d\d-\d\d\d\d/);
+		var no_bar_string_phone_match = param.match(/^0[7-9]0\d\d\d\d\d\d\d\d/);
+	
+		if ( bar_string_phone_match || no_bar_string_phone_match) {
+			alert(param);		
+		}else{
+			alert('入力された値は電話番号ではありません。');
+		}
+	    };
+            this.date_expression = function (param) {
+
+		var date_match = param.match(/^/);
+	
+		if ( bar_string_phone_match || no_bar_string_phone_match) {
+			alert(param);		
+		}else{
+			alert('入力された値は日付ではありません。');
+		}
+	    };
+	    this.url_expression(elm[0].value);
+	    this.phone_expression(phone[0].value);
+	    //this.date_expression(hope_date[0].value);
         },
         render: function () {
             var template = this.template(this.model.toJSON());
