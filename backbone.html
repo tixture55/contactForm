@@ -70,8 +70,8 @@ var task = new Task();
             
         },
         hello: function () {
-	    var elm=document.getElementsByName('text_impression');
-	    var elm=document.getElementsByName('phone');
+	    var elm = document.getElementsByName('text_impression');
+	    var phone = document.getElementsByName('phone');
 	    
 	    $("body").append("<p>テキスト</p>"); // 追記
             this.url_expression = function (param) {
@@ -88,17 +88,17 @@ var task = new Task();
 	    };
             this.phone_expression = function (param) {
 
-		var head_http_match = param.match(/^http:\/\//);
-		var head_https_match = param.match(/^https:\/\//);
-		var country_domain_match = param.match(/jp/);	
+		var bar_string_phone_match = param.match(/^0[7-9]0-[0-9][0-9][0-9][0-9]-[0-9][0-9][0-9][0-9]/);
+		var no_bar_string_phone_match = param.match(/^0[7-9]0[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]/);
 	
-		if ( (head_http_match || head_https_match ) && country_domain_match) {
+		if ( bar_string_phone_match || no_bar_string_phone_match) {
 			alert(param);		
 		}else{
-			alert('入力された値はURLではありません。');
+			alert('入力された値は電話番号ではありません。');
 		}
 	    };
 	    this.url_expression(elm[0].value);
+	    this.phone_expression(phone[0].value);
         },
         render: function () {
             var template = this.template(this.model.toJSON());
