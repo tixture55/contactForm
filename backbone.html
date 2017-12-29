@@ -5,12 +5,17 @@
     <title>タイトル</title>
 </head>
 <body>
-<h3>今月の勤務の感想入力</h3>
+<h3>お問い合わせフォーム</h3>
 <br>
 <br>
-今月の感想：
+Please input your URL：
 <br>
-<textarea name="text_impression"></textarea>
+<input type="text" name="text_impression"></textarea>
+<br>
+<br>
+Please input your phone number：
+<br>
+<input type="text" name="phone">
 <br>
 <br>
 <input class="hello-button" style="WIDTH: 70px;" type="button" value="send" name="detailCashing">
@@ -64,13 +69,12 @@ var task = new Task();
             });
             
         },
-        expression: function (param) {
-        },
         hello: function () {
 	    var elm=document.getElementsByName('text_impression');
+	    var elm=document.getElementsByName('phone');
 	    
 	    $("body").append("<p>テキスト</p>"); // 追記
-            this.expression = function (param) {
+            this.url_expression = function (param) {
 
 		var head_http_match = param.match(/^http:\/\//);
 		var head_https_match = param.match(/^https:\/\//);
@@ -82,7 +86,19 @@ var task = new Task();
 			alert('入力された値はURLではありません。');
 		}
 	    };
-	    this.expression(elm[0].value);
+            this.phone_expression = function (param) {
+
+		var head_http_match = param.match(/^http:\/\//);
+		var head_https_match = param.match(/^https:\/\//);
+		var country_domain_match = param.match(/jp/);	
+	
+		if ( (head_http_match || head_https_match ) && country_domain_match) {
+			alert(param);		
+		}else{
+			alert('入力された値はURLではありません。');
+		}
+	    };
+	    this.url_expression(elm[0].value);
         },
         render: function () {
             var template = this.template(this.model.toJSON());
